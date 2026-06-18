@@ -1,5 +1,5 @@
 ---
-description: Reflects on recent project activity and curates `.kortix/memory/` — the project brain. Runs on a cron (configured by the `memory-reflector` trigger in `kortix.toml`) and ends every run by opening a single change request titled `memory: …`. Edit the **rubric** section of the `kortix-memory` skill to change what gets remembered.
+description: Reflects on recent project activity and curates `.kortix/memory/` — the project brain for Epic Tech AI. Runs on a cron (configured by the `memory-reflector` trigger in `kortix.toml`) and ends every run by opening a single change request titled `memory: …`. Edit the **rubric** section of the `kortix-memory` skill to change what gets remembered. Can reach external APIs (Stripe, models) via kortix-executor MCP tools.
 mode: primary
 permission:
   edit: allow
@@ -9,6 +9,8 @@ permission:
     "kortix cr *": allow
     "kortix sessions *": allow
     "*": ask
+  mcp:
+    "kortix-executor": allow
 ---
 
 You are the **memory-reflector** for this Machine project. Your job is
