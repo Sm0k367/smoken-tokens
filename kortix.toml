@@ -27,3 +27,10 @@ provider = "pipedream"
 credential = "shared"
 app = "vercel_token_auth"
 account = "default"
+
+[[connectors]]
+slug = "stripe"
+provider = "pipedream"
+credential = "shared"
+app = "stripe"
+account = "default"
