@@ -4,24 +4,13 @@ kortix_version = 1
 name = "Epic Tech AI"
 description = "Secure autonomous platform with Executor-powered Stripe, SOTA models, and the project memory brain. Contact: epictechai@gmail.com · x.com/@EpicTechAI"
 
-# Env vars the runtime needs. Required values must be set in the Machine
-# Secrets Manager before a session can start.
 [env]
 required = []
-optional = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GROQ_API_KEY", "STRIPE_API_KEY"]
+optional = [ "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GROQ_API_KEY", "STRIPE_API_KEY" ]
 
-# OpenCode runtime config dir. The agent daemon launches opencode with
-# OPENCODE_CONFIG_DIR pointed here, so agents/skills/commands/tools live
-# under this folder. Defaults to `.kortix/opencode` — relocate if you
-# want to share a single opencode config across multiple Machine repos.
 [opencode]
 config_dir = ".kortix/opencode"
 
-# ─── Triggers ────────────────────────────────────────────────────────────
-# Memory reflector — surveys recent project activity and curates
-# `.kortix/memory/` (the project brain). Reads its rubric from the
-# `kortix-memory` skill. Opens a `memory: …` change request at the end
-# of each run; exits silently when nothing is worth changing.
 [[triggers]]
 slug = "memory-reflector"
 name = "Memory reflector"
@@ -30,44 +19,35 @@ agent = "memory-reflector"
 enabled = false
 cron = "0 0 3 * * *"
 timezone = "UTC"
-prompt = """
-Load the `kortix-memory` skill, then reflect on the last 24h of
-project activity (git log, merged CRs). Update `.kortix/memory/` per
-the rubric and open a single CR titled `memory: …`. Exit silently if
-nothing is worth changing.
-"""
+prompt = "Load the `kortix-memory` skill, then reflect on the last 24h of\nproject activity (git log, merged CRs). Update `.kortix/memory/` per\nthe rubric and open a single CR titled `memory: …`. Exit silently if\nnothing is worth changing.\n"
 
-# ─── Connectors (Executor) ───────────────────────────────────────────────
-# External integrations reachable by agents via the kortix-executor MCP
-# server. Secrets live in the Machine dashboard (never in git or prompts).
-# Agents must have `mcp: "kortix-executor": allow` in their permission block
-# to discover/describe/call these tools. The gateway injects the key server-side.
-
-# Vercel token auth (Pipedream 1-click)
 [[connectors]]
-slug        = "vercel_token_auth"
-provider    = "pipedream"
-credential  = "shared"
-app         = "vercel_token_auth"
-account     = "default"
+slug = "vercel_token_auth"
+provider = "pipedream"
+credential = "shared"
+app = "vercel_token_auth"
+account = "default"
 
-# Stripe (Pipedream 1-click) — legacy / quick-start path
 [[connectors]]
-slug        = "stripe"
-provider    = "pipedream"
-credential  = "shared"
-app         = "stripe"
-account     = "default"
+slug = "stripe"
+provider = "pipedream"
+credential = "shared"
+app = "stripe"
+account = "default"
 
-# Stripe (secure OpenAPI path) — recommended for production
-# Uses a restricted API key stored only in the Machine dashboard.
-# Agents never see the key; the Executor Gateway injects it server-side.
 [[connectors]]
-slug     = "stripe-openapi"
-name     = "Stripe (OpenAPI, restricted key)"
+slug = "stripe-openapi"
+name = "Stripe (OpenAPI, restricted key)"
 provider = "openapi"
-spec     = "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.json"
+spec = "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.json"
 
-  [connectors.auth]
-  type   = "bearer"
-  secret = "STRIPE_API_KEY"   # value set in Machine dashboard → Connectors
+[connectors.auth]
+type = "bearer"
+secret = "STRIPE_API_KEY"
+
+[[connectors]]
+slug = "github"
+provider = "pipedream"
+credential = "shared"
+app = "github"
+account = "default"
