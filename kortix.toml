@@ -62,3 +62,14 @@ domains = []
 type = "git"
 repo = "https://github.com/templatecookie/poco-html"
 branch = "master"
+
+[[apps]]
+slug = "smoke"
+name = "smoke"
+enabled = true
+domains = []
+
+[apps.source]
+type = "git"
+repo = "https://github.com/templatecookie/poco-html"
+branch = "master"
