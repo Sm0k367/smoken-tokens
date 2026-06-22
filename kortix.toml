@@ -1,4 +1,5 @@
 kortix_version = 1
+apps = []
 
 [project]
 name = "Epic Tech AI"
@@ -51,14 +52,3 @@ provider = "pipedream"
 credential = "shared"
 app = "github"
 account = "default"
-
-[[apps]]
-slug = "smoke"
-name = "smoke"
-enabled = true
-domains = []
-
-[apps.source]
-type = "git"
-repo = "https://github.com/templatecookie/poco-html"
-branch = "master"
