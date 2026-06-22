@@ -51,3 +51,14 @@ provider = "pipedream"
 credential = "shared"
 app = "github"
 account = "default"
+
+[[apps]]
+slug = "templatecookiepocohtml"
+name = "smoke test"
+enabled = true
+domains = []
+
+[apps.source]
+type = "git"
+repo = "https://github.com/templatecookie/poco-html"
+branch = "master"
