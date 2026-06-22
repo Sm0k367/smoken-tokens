@@ -32,3 +32,10 @@ domains = []
 type = "git"
 repo = "https://github.com/Sm0k367/machine-built"
 branch = "master"
+
+[[connectors]]
+slug = "github"
+provider = "pipedream"
+credential = "shared"
+app = "github"
+account = "default"
