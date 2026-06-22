@@ -12,17 +12,6 @@ required = []
 optional = []
 
 [[apps]]
-slug = "test-site5"
-name = "test-site5"
-enabled = true
-domains = []
-
-[apps.source]
-type = "git"
-repo = "https://github.com/templatecookie/poco-html"
-branch = "master"
-
-[[apps]]
 slug = "test-site6"
 name = "test-site6"
 enabled = true
