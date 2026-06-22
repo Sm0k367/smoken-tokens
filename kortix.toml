@@ -1,8 +1,19 @@
 kortix_version = 1
 
+[project]
+name = "Smoke"
+description = ""
+
+[runtime]
+root = ".opencode"
+
+[env]
+required = []
+optional = []
+
 [[apps]]
-slug = "epic"
-name = "epic"
+slug = "test-site5"
+name = "test-site5"
 enabled = true
 domains = []
 
@@ -10,55 +21,3 @@ domains = []
 type = "git"
 repo = "https://github.com/templatecookie/poco-html"
 branch = "master"
-
-[project]
-name = "Epic Tech AI"
-description = "Secure autonomous platform with Executor-powered Stripe, SOTA models, and the project memory brain. Contact: epictechai@gmail.com · x.com/@EpicTechAI"
-
-[env]
-required = []
-optional = [ "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GROQ_API_KEY", "STRIPE_API_KEY" ]
-
-[opencode]
-config_dir = ".kortix/opencode"
-
-[[triggers]]
-slug = "memory-reflector"
-name = "Memory reflector"
-type = "cron"
-agent = "memory-reflector"
-enabled = false
-cron = "0 0 3 * * *"
-timezone = "UTC"
-prompt = "Load the `kortix-memory` skill, then reflect on the last 24h of\nproject activity (git log, merged CRs). Update `.kortix/memory/` per\nthe rubric and open a single CR titled `memory: …`. Exit silently if\nnothing is worth changing.\n"
-
-[[connectors]]
-slug = "vercel_token_auth"
-provider = "pipedream"
-credential = "shared"
-app = "vercel_token_auth"
-account = "default"
-
-[[connectors]]
-slug = "stripe"
-provider = "pipedream"
-credential = "shared"
-app = "stripe"
-account = "default"
-
-[[connectors]]
-slug = "stripe-openapi"
-name = "Stripe (OpenAPI, restricted key)"
-provider = "openapi"
-spec = "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.json"
-
-[connectors.auth]
-type = "bearer"
-secret = "STRIPE_API_KEY"
-
-[[connectors]]
-slug = "github"
-provider = "pipedream"
-credential = "shared"
-app = "github"
-account = "default"
