@@ -1,5 +1,15 @@
 kortix_version = 1
-apps = []
+
+[[apps]]
+slug = "epic"
+name = "epic"
+enabled = true
+domains = []
+
+[apps.source]
+type = "git"
+repo = "https://github.com/templatecookie/poco-html"
+branch = "master"
 
 [project]
 name = "Epic Tech AI"
