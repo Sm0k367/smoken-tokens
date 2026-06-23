@@ -39,6 +39,6 @@ account = "default"
 [[connectors]]
 slug = "vercel_token_auth"
 provider = "pipedream"
-credential = "per_user"
+credential = "shared"
 app = "vercel_token_auth"
 account = "default"
