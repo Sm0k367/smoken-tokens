@@ -28,3 +28,10 @@ provider = "pipedream"
 credential = "shared"
 app = "github"
 account = "default"
+
+[[connectors]]
+slug = "supabase"
+provider = "pipedream"
+credential = "shared"
+app = "supabase"
+account = "default"
