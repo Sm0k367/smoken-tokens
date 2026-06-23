@@ -22,17 +22,6 @@ type = "git"
 repo = "https://github.com/templatecookie/poco-html"
 branch = "master"
 
-[[apps]]
-slug = "machine-built"
-name = "machine-built"
-enabled = true
-domains = []
-
-[apps.source]
-type = "git"
-repo = "https://github.com/Sm0k367/machine-built"
-branch = "master"
-
 [[connectors]]
 slug = "github"
 provider = "pipedream"
