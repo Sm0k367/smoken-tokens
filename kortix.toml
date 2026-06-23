@@ -35,3 +35,10 @@ provider = "pipedream"
 credential = "shared"
 app = "supabase"
 account = "default"
+
+[[connectors]]
+slug = "vercel_token_auth"
+provider = "pipedream"
+credential = "per_user"
+app = "vercel_token_auth"
+account = "default"
