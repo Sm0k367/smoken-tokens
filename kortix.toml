@@ -49,3 +49,10 @@ provider = "pipedream"
 credential = "shared"
 app = "slack_v2"
 account = "default"
+
+[[connectors]]
+slug = "stripe"
+provider = "pipedream"
+credential = "shared"
+app = "stripe"
+account = "default"
