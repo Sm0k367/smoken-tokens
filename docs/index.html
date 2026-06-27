@@ -3,391 +3,602 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Epic Agent Fabric — Production-ready, local-first agent OS. Deploy the full stack in 60 seconds with Docker. 12 tools wired. Token-native. Self-host everything.">
-  <title>Epic Agent Fabric • Production-Ready Agent OS</title>
+  <title>Epic Agent Fabric • Production-Ready Local Agent OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root {
-      --bg: #050505;
-      --card: #0a0a0a;
-      --accent: #00f5ff;
-      --text: #ededed;
-      --muted: #888;
-      --success: #22c55e;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
     
-    nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 24px 0; border-bottom: 1px solid #222;
+    :root {
+      --accent: #00f5ff;
     }
-    .logo { font-weight: 700; font-size: 1.5rem; letter-spacing: -0.03em; }
-    .nav-links { display: flex; gap: 32px; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
-    .nav-links a:hover { color: var(--text); }
+    
+    body {
+      font-family: 'Inter', system_ui, sans-serif;
+    }
+    
+    .font-display {
+      font-family: 'Space Grotesk', 'Inter', sans-serif;
+      font-weight: 600;
+    }
 
-    .hero {
-      padding: 100px 0 80px;
-      text-align: center;
+    .section-header {
+      font-size: 3.2rem;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
     }
-    .hero h1 {
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      line-height: 1.05; margin: 0 0 20px; font-weight: 800; letter-spacing: -0.04em;
+
+    .pillar-card {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .hero .tagline {
-      font-size: 1.3rem; color: var(--muted); max-width: 620px; margin: 0 auto 32px;
+    
+    .pillar-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     }
-    .badge {
-      display: inline-block;
-      background: #111;
-      color: var(--success);
-      font-size: 0.75rem;
-      padding: 4px 14px;
-      border-radius: 999px;
-      margin-bottom: 24px;
-      border: 1px solid #222;
-    }
-    .cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
     .btn {
-      display: inline-block; padding: 16px 36px; border-radius: 9999px;
-      font-weight: 600; text-decoration: none; font-size: 1rem;
-      transition: all 0.2s ease;
+      transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
     }
-    .btn-primary {
-      background: var(--accent); color: #000;
-    }
-    .btn-primary:hover { background: #fff; transform: translateY(-1px); }
-    .btn-secondary {
-      background: transparent; color: var(--text); border: 1px solid #444;
-    }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-
-    section { padding: 80px 0; }
-    h2 {
-      font-size: 2.4rem; margin: 0 0 16px; letter-spacing: -0.03em;
-    }
-    .section-subtitle {
-      font-size: 1.15rem; color: var(--muted); max-width: 560px;
+    
+    .btn:hover {
+      transform: translateY(-2px);
     }
 
-    .quickstart {
-      background: #0a0a0a;
-      border: 1px solid #222;
-      border-radius: 20px;
-      padding: 48px;
-      margin: 40px 0;
+    .btn-cyan {
+      background-color: #00f5ff;
+      color: #000;
     }
-    .quickstart pre {
-      background: #111;
-      padding: 24px;
-      border-radius: 12px;
-      overflow-x: auto;
-      font-size: 0.95rem;
-      color: #0f0;
+    .btn-cyan:hover {
+      background-color: #67faff;
+      box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.3);
     }
 
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-top: 48px;
+    .btn-green {
+      background-color: #22c55e;
+      color: #000;
     }
-    .pillar {
-      background: var(--card);
-      border: 1px solid #222;
-      border-radius: 20px;
-      padding: 36px 32px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+    .btn-green:hover {
+      background-color: #4ade80;
+      box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.3);
     }
-    .pillar:hover {
-      transform: translateY(-4px);
-      border-color: #333;
-    }
-    .pillar h3 {
-      margin: 0 0 12px; font-size: 1.35rem; color: var(--accent);
-    }
-    .pillar .tools {
-      font-size: 0.95rem; color: var(--muted); line-height: 1.7;
-    }
-    .status {
-      display: inline-block; font-size: 0.75rem; padding: 3px 12px;
-      border-radius: 999px; margin-top: 16px; font-weight: 600;
-    }
-    .status.prod { background: #052e16; color: #22c55e; }
-    .status.core { background: #1a1a1a; color: var(--accent); }
-    .status.research { background: #1a1408; color: #facc15; }
 
-    .how {
-      background: #0a0a0a;
-      border-radius: 24px;
-      padding: 64px;
+    .btn-purple {
+      background-color: #a855f7;
+      color: white;
     }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 48px;
-      margin-top: 48px;
+    .btn-purple:hover {
+      background-color: #c084fc;
+      box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3);
     }
-    .step {
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #444;
+    }
+    .btn-outline:hover {
+      border-color: #00f5ff;
+      color: #00f5ff;
+    }
+
+    .service-btn {
+      transition: all 0.15s ease;
+    }
+    .service-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .command-box {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .nav-active {
+      color: white;
       position: relative;
     }
-    .step-number {
-      font-size: 0.85rem; font-weight: 700; color: var(--accent);
-      margin-bottom: 12px; display: block;
-    }
-
-    .diff-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-    .diff {
-      background: #0a0a0a; padding: 32px; border-radius: 16px; border: 1px solid #222;
-    }
-    .diff h4 { margin: 0 0 12px; color: var(--accent); }
-
-    .roadmap {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .roadmap-item {
-      display: flex; gap: 24px; align-items: flex-start;
-    }
-    .roadmap-item .quarter {
-      font-weight: 700; color: var(--accent); min-width: 92px;
-    }
-
-    .final-cta {
-      text-align: center;
-      background: linear-gradient(180deg, #111 0%, #050505 100%);
-      padding: 120px 24px;
-      border-radius: 24px;
-    }
-    .final-cta h2 { font-size: 3rem; }
-    .final-cta p { max-width: 480px; margin: 0 auto 40px; color: var(--muted); }
-
-    footer {
-      padding: 60px 0 40px;
-      border-top: 1px solid #222;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-    .footer-grid {
-      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px;
-    }
-
-    @media (max-width: 768px) {
-      .hero { padding: 70px 0 50px; }
-      section { padding: 60px 0; }
-      .how { padding: 48px 24px; }
+    .nav-active:after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, #00f5ff, transparent);
     }
   </style>
 </head>
-<body>
+<body class="bg-[#050505] text-white">
   <!-- NAV -->
-  <nav>
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
-      <div class="logo">Epic Agent Fabric</div>
-      <div class="nav-links">
-        <a href="#quickstart">Deploy</a>
-        <a href="#pillars">Pillars</a>
-        <a href="#how">How it works</a>
-        <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank">GitHub</a>
+  <nav class="border-b border-white/10 bg-[#050505]/80 backdrop-blur-lg sticky top-0 z-50">
+    <div class="max-w-screen-xl mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center gap-x-3">
+          <div class="w-9 h-9 bg-[#00f5ff] rounded-2xl flex items-center justify-center">
+            <span class="text-black font-bold text-3xl tracking-tighter">E</span>
+          </div>
+          <div>
+            <span class="font-semibold text-2xl tracking-tighter">Epic Agent Fabric</span>
+          </div>
+        </div>
+        
+        <div class="hidden md:flex items-center gap-x-9 text-sm">
+          <a href="#deploy" class="hover:text-[#00f5ff] transition-colors">Deploy</a>
+          <a href="#pillars" class="hover:text-[#00f5ff] transition-colors">Pillars</a>
+          <a href="#services" class="hover:text-[#00f5ff] transition-colors">Services</a>
+          <a href="#how" class="hover:text-[#00f5ff] transition-colors">How it works</a>
+        </div>
+
+        <div class="flex items-center gap-x-3">
+          <a href="https://github.com/Sm0k367/smoken-tokens" 
+             target="_blank"
+             class="px-5 py-2.5 text-sm border border-white/20 hover:border-white/40 rounded-3xl transition-all flex items-center gap-x-2">
+            <span>GitHub</span>
+          </a>
+          <button onclick="showDeployModal()"
+                  class="px-6 py-2.5 bg-[#00f5ff] hover:bg-[#67faff] text-black text-sm font-semibold rounded-3xl transition-all flex items-center gap-x-2">
+            Deploy Now
+          </button>
+        </div>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <div class="hero container">
-    <div class="badge">PRODUCTION READY • SELF-HOSTABLE • 2026</div>
-    <h1>The production-ready,<br>local-first agent OS.</h1>
-    <p class="tagline">Deploy the full stack in 60 seconds.<br>12 powerful tools wired. Token-native economics.<br>Everything runs on your hardware.</p>
-    
-    <div class="cta-group">
-      <a href="#quickstart" class="btn btn-primary">Deploy in 60 seconds →</a>
-      <a href="https://github.com/Sm0k367/smoken-tokens" class="btn btn-secondary" target="_blank">View on GitHub</a>
+  <div class="max-w-screen-xl mx-auto px-6 pt-16 pb-12">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/5 border border-white/10 mb-6">
+        <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+        <span class="text-sm font-medium text-emerald-400">PRODUCTION READY • SELF-HOSTABLE • 2026</span>
+      </div>
+      
+      <h1 class="text-7xl md:text-8xl font-semibold tracking-tighter leading-none mb-4">
+        The production-ready,<br>
+        local-first agent OS.
+      </h1>
+      
+      <p class="text-2xl text-white/60 max-w-lg mx-auto mb-10">
+        Deploy the full stack in 60 seconds.<br>
+        12 powerful tools. Token-native. Zero vendor lock-in.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button onclick="showDeployModal()"
+                class="btn btn-cyan px-10 py-4 text-xl font-semibold rounded-3xl flex items-center justify-center gap-x-3 group">
+          <span>Deploy in 60 seconds</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </button>
+        
+        <a href="#services" 
+           class="btn btn-outline px-10 py-4 text-xl font-semibold rounded-3xl flex items-center justify-center gap-x-3">
+          Explore live services
+        </a>
+      </div>
+      
+      <p class="mt-6 text-sm text-white/40">No cloud required • Runs 100% on your hardware</p>
     </div>
-    <p style="margin-top: 24px; font-size: 0.9rem; color: #555;">docker compose up • One command • Zero vendor lock-in</p>
   </div>
 
-  <!-- QUICKSTART -->
-  <section id="quickstart" class="container">
-    <h2>Deploy the entire platform in 60 seconds.</h2>
-    <p class="section-subtitle">No cloud. No subscriptions. No data leaving your machine.</p>
-
-    <div class="quickstart">
-      <pre><code>git clone https://github.com/Sm0k367/smoken-tokens.git
+  <!-- QUICK DEPLOY -->
+  <div id="deploy" class="max-w-screen-xl mx-auto px-6 py-12">
+    <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-12">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="text-emerald-400 text-sm font-semibold tracking-widest mb-3">ONE COMMAND INSTALL</div>
+          <h2 class="text-5xl font-semibold tracking-tighter">Get the entire platform running locally.</h2>
+          <p class="mt-4 text-lg text-white/70">Everything you need — Executor Gateway, TokenOS, Media Fabric, Intelligence — in a single Docker stack.</p>
+          
+          <div class="mt-8 flex items-center gap-x-4 text-sm">
+            <div class="flex items-center gap-x-2">
+              <div class="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl text-xs font-medium">✓ Docker</div>
+            </div>
+            <div class="text-white/40">•</div>
+            <div class="text-white/60">Works on macOS, Linux, Windows (WSL2)</div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="bg-black/60 rounded-2xl p-1 border border-white/10">
+            <div class="flex items-center justify-between px-5 py-3 border-b border-white/10">
+              <div class="font-mono text-sm text-white/60">Terminal</div>
+              <button onclick="copyCommand(this)" 
+                      class="text-xs px-3 py-1 bg-white/5 hover:bg-white/10 rounded-xl flex items-center gap-x-1.5 transition-colors">
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre class="command-box p-5 text-sm text-emerald-400 overflow-x-auto">git clone https://github.com/Sm0k367/smoken-tokens.git
 cd smoken-tokens
-chmod +x scripts/setup.sh
-./scripts/setup.sh</code></pre>
-      
-      <p style="margin-top: 24px; color: var(--muted);">
-        Then add your API keys to <code>.env</code> and run:
-      </p>
-      <pre style="margin-top: 12px;"><code>docker compose up -d</code></pre>
+./scripts/setup.sh</pre>
+          </div>
+          
+          <div class="mt-4 text-center">
+            <button onclick="showDeployModal()" 
+                    class="text-sm flex items-center justify-center gap-x-2 text-[#00f5ff] hover:text-white transition-colors mx-auto">
+              <span>Or use the one-click deploy wizard →</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div style="text-align: center; margin-top: 16px;">
-      <a href="https://github.com/Sm0k367/smoken-tokens" class="btn btn-secondary" target="_blank">Full deployment guide →</a>
-    </div>
-  </section>
+  </div>
 
   <!-- PILLARS -->
-  <section id="pillars" class="container">
-    <h2>Five pillars.<br>Twelve tools.<br>One platform.</h2>
-    <p class="section-subtitle">Every service is containerized, TokenOS-metered, and agent-callable via MCP.</p>
+  <div id="pillars" class="max-w-screen-xl mx-auto px-6 py-16">
+    <div class="text-center mb-12">
+      <div class="text-[#00f5ff] text-sm font-semibold tracking-[3px]">THE PLATFORM</div>
+      <h2 class="text-6xl font-semibold tracking-tighter mt-2">Five pillars.<br>Twelve tools. One OS.</h2>
+    </div>
 
-    <div class="pillars">
-      <div class="pillar">
-        <h3>1. Media Fabric</h3>
-        <div class="tools">
-          Open Montage • OpenCut • Voicebox • FluidVoice • Penpot
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Media Fabric -->
+      <div class="pillar-card bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="text-[#00f5ff] font-semibold">01</div>
+            <h3 class="text-3xl font-semibold mt-2 tracking-tight">Media Fabric</h3>
+          </div>
+          <div class="px-3 py-1 text-xs rounded-2xl bg-emerald-500/10 text-emerald-400 font-medium">LIVE</div>
         </div>
-        <div class="status prod">RUNNING IN DOCKER</div>
+        
+        <p class="mt-6 text-white/60">End-to-end local video, audio, voice cloning &amp; design pipelines that agents fully control.</p>
+        
+        <div class="mt-8 text-sm text-white/50 space-y-1">
+          <div>• Open Montage — Research → Render</div>
+          <div>• OpenCut — Agentic video editing</div>
+          <div>• Voicebox — Local voice cloning</div>
+          <div>• FluidVoice — Offline dictation</div>
+          <div>• Penpot — Self-hosted Figma</div>
+        </div>
+        
+        <div class="mt-8 flex gap-3">
+          <button onclick="launchService('media')" 
+                  class="btn btn-cyan flex-1 py-3 text-sm font-semibold rounded-2xl">Launch Media Stack</button>
+          <button onclick="showDocs('media')" 
+                  class="btn btn-outline flex-1 py-3 text-sm font-semibold rounded-2xl">View Docs</button>
+        </div>
       </div>
 
-      <div class="pillar">
-        <h3>2. Agent OS Layer</h3>
-        <div class="tools">
-          Codebase Memory MCP • Zapier MCP • Agent Reach • kortix-executor
+      <!-- Agent OS -->
+      <div class="pillar-card bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="text-[#00f5ff] font-semibold">02</div>
+            <h3 class="text-3xl font-semibold mt-2 tracking-tight">Agent OS Layer</h3>
+          </div>
+          <div class="px-3 py-1 text-xs rounded-2xl bg-emerald-500/10 text-emerald-400 font-medium">LIVE</div>
         </div>
-        <div class="status prod">RUNNING IN DOCKER</div>
+        
+        <p class="mt-6 text-white/60">Deep, secure integrations that give agents real power without ever seeing your keys.</p>
+        
+        <div class="mt-8 text-sm text-white/50 space-y-1">
+          <div>• Codebase Memory MCP</div>
+          <div>• Zapier MCP — 1000+ apps</div>
+          <div>• Agent Reach — X, Reddit, GitHub</div>
+          <div>• kortix-executor — Secure gateway</div>
+        </div>
+        
+        <div class="mt-8 flex gap-3">
+          <button onclick="launchService('agent-os')" 
+                  class="btn btn-cyan flex-1 py-3 text-sm font-semibold rounded-2xl">Launch Agent OS</button>
+          <button onclick="showDocs('agent-os')" 
+                  class="btn btn-outline flex-1 py-3 text-sm font-semibold rounded-2xl">View Docs</button>
+        </div>
       </div>
 
-      <div class="pillar">
-        <h3>3. Intelligence Fabric</h3>
-        <div class="tools">
-          TimesFM • Daily Stock Analysis • World Monitor
+      <!-- Intelligence -->
+      <div class="pillar-card bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="text-[#00f5ff] font-semibold">03</div>
+            <h3 class="text-3xl font-semibold mt-2 tracking-tight">Intelligence Fabric</h3>
+          </div>
+          <div class="px-3 py-1 text-xs rounded-2xl bg-emerald-500/10 text-emerald-400 font-medium">LIVE</div>
         </div>
-        <div class="status prod">RUNNING IN DOCKER</div>
+        
+        <p class="mt-6 text-white/60">Zero-shot forecasting, market signals, and live global context for every agent.</p>
+        
+        <div class="mt-8 text-sm text-white/50 space-y-1">
+          <div>• TimesFM — Google forecasting</div>
+          <div>• Daily Stock Analysis</div>
+          <div>• World Monitor — Geopolitics &amp; risk</div>
+        </div>
+        
+        <div class="mt-8 flex gap-3">
+          <button onclick="launchService('intelligence')" 
+                  class="btn btn-cyan flex-1 py-3 text-sm font-semibold rounded-2xl">Launch Intelligence</button>
+          <button onclick="showDocs('intelligence')" 
+                  class="btn btn-outline flex-1 py-3 text-sm font-semibold rounded-2xl">View Docs</button>
+        </div>
       </div>
 
-      <div class="pillar">
-        <h3>4. TokenOS</h3>
-        <div class="tools">
-          Real-time metering • Burn forecasting • Budget guardrails • Token-native billing
+      <!-- TokenOS -->
+      <div class="pillar-card bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="text-[#00f5ff] font-semibold">04</div>
+            <h3 class="text-3xl font-semibold mt-2 tracking-tight">TokenOS</h3>
+          </div>
+          <div class="px-3 py-1 text-xs rounded-2xl bg-violet-500/10 text-violet-400 font-medium">CORE</div>
         </div>
-        <div class="status core">CORE • PRODUCTION</div>
+        
+        <p class="mt-6 text-white/60">Real-time usage metering, burn forecasting, budget guardrails, and token-native billing.</p>
+        
+        <div class="mt-8 text-sm text-white/50 space-y-1">
+          <div>• Live token burn dashboard</div>
+          <div>• Quarterly compute P&amp;L reports</div>
+          <div>• Per-agent cost attribution</div>
+        </div>
+        
+        <div class="mt-8 flex gap-3">
+          <button onclick="launchService('tokenos')" 
+                  class="btn btn-purple flex-1 py-3 text-sm font-semibold rounded-2xl">Open TokenOS Dashboard</button>
+          <button onclick="showDocs('tokenos')" 
+                  class="btn btn-outline flex-1 py-3 text-sm font-semibold rounded-2xl">View Docs</button>
+        </div>
       </div>
 
-      <div class="pillar">
-        <h3>5. Prompt Layer</h3>
-        <div class="tools">
-          System Prompt Leaks • Guardrails • Instruction templates
+      <!-- Prompt Layer -->
+      <div class="pillar-card bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="text-[#00f5ff] font-semibold">05</div>
+            <h3 class="text-3xl font-semibold mt-2 tracking-tight">Prompt Layer</h3>
+          </div>
+          <div class="px-3 py-1 text-xs rounded-2xl bg-amber-500/10 text-amber-400 font-medium">RESEARCH</div>
         </div>
-        <div class="status research">RESEARCH • GROWING</div>
+        
+        <p class="mt-6 text-white/60">Living research dataset of system prompts, guardrails, and agent behavior patterns.</p>
+        
+        <div class="mt-8 text-sm text-white/50 space-y-1">
+          <div>• System Prompt Leaks database</div>
+          <div>• Safety guardrail library</div>
+          <div>• Instruction template generator</div>
+        </div>
+        
+        <div class="mt-8 flex gap-3">
+          <button onclick="launchService('prompt')" 
+                  class="btn btn-purple flex-1 py-3 text-sm font-semibold rounded-2xl">Explore Prompt Research</button>
+          <button onclick="showDocs('prompt')" 
+                  class="btn btn-outline flex-1 py-3 text-sm font-semibold rounded-2xl">View Docs</button>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- LIVE SERVICES -->
+  <div id="services" class="max-w-screen-xl mx-auto px-6 py-12">
+    <div class="mb-8">
+      <div class="text-[#00f5ff] text-sm font-semibold tracking-[3px]">INSTANT ACCESS</div>
+      <h2 class="text-5xl font-semibold tracking-tighter">Live services running locally</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div onclick="window.open('http://localhost:8787', '_blank')" class="service-btn cursor-pointer bg-[#0a0a0a] hover:bg-[#111] border border-white/10 hover:border-[#00f5ff]/40 p-6 rounded-3xl group">
+        <div class="flex justify-between">
+          <div class="font-semibold">Executor Gateway</div>
+          <div class="text-xs px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded">8787</div>
+        </div>
+        <div class="text-xs text-white/50 mt-6">Secure MCP server • All external calls</div>
+      </div>
+      
+      <div onclick="window.open('http://localhost:7777', '_blank')" class="service-btn cursor-pointer bg-[#0a0a0a] hover:bg-[#111] border border-white/10 hover:border-violet-400/40 p-6 rounded-3xl group">
+        <div class="flex justify-between">
+          <div class="font-semibold">TokenOS Dashboard</div>
+          <div class="text-xs px-2 py-0.5 bg-violet-500/10 text-violet-400 rounded">7777</div>
+        </div>
+        <div class="text-xs text-white/50 mt-6">Usage • Forecasting • Budgets</div>
+      </div>
+      
+      <div onclick="window.open('http://localhost:9001', '_blank')" class="service-btn cursor-pointer bg-[#0a0a0a] hover:bg-[#111] border border-white/10 hover:border-[#00f5ff]/40 p-6 rounded-3xl group">
+        <div class="flex justify-between">
+          <div class="font-semibold">Penpot</div>
+          <div class="text-xs px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded">9001</div>
+        </div>
+        <div class="text-xs text-white/50 mt-6">Self-hosted design tool</div>
+      </div>
+      
+      <div onclick="window.open('http://localhost:5001', '_blank')" class="service-btn cursor-pointer bg-[#0a0a0a] hover:bg-[#111] border border-white/10 hover:border-[#00f5ff]/40 p-6 rounded-3xl group">
+        <div class="flex justify-between">
+          <div class="font-semibold">Voicebox</div>
+          <div class="text-xs px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded">5001</div>
+        </div>
+        <div class="text-xs text-white/50 mt-6">Local voice cloning &amp; TTS</div>
+      </div>
+    </div>
+    
+    <p class="text-center text-xs text-white/40 mt-8">All services are automatically started by <code>docker compose up -d</code></p>
+  </div>
 
   <!-- HOW IT WORKS -->
-  <section id="how" class="container">
-    <div class="how">
-      <h2>How it actually works in production</h2>
-      <div class="steps">
-        <div class="step">
-          <span class="step-number">01</span>
-          <strong>One-command bootstrap</strong><br>
-          <code>./scripts/setup.sh</code> creates volumes, pulls images, and starts core services.
-        </div>
-        <div class="step">
-          <span class="step-number">02</span>
-          <strong>Executor Gateway protects you</strong><br>
-          All external calls go through a secure MCP server. No keys ever reach agents.
-        </div>
-        <div class="step">
-          <span class="step-number">03</span>
-          <strong>TokenOS gives you control</strong><br>
-          Real-time usage, burn forecasting, and budget guardrails across every tool.
-        </div>
-        <div class="step">
-          <span class="step-number">04</span>
-          <strong>Full stack on demand</strong><br>
-          <code>docker compose --profile full up -d</code> brings up Media + Intelligence layers.
-        </div>
+  <div id="how" class="max-w-screen-xl mx-auto px-6 py-20">
+    <div class="max-w-2xl">
+      <h2 class="text-6xl font-semibold tracking-tighter">How it works.<br>Step by step.</h2>
+    </div>
+    
+    <div class="mt-12 grid md:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <div class="text-[#00f5ff] font-mono text-sm">01</div>
+        <div class="font-semibold text-xl">Run the setup script</div>
+        <div class="text-sm text-white/60">One command creates volumes, pulls images, and starts the core services.</div>
+      </div>
+      <div class="space-y-3">
+        <div class="text-[#00f5ff] font-mono text-sm">02</div>
+        <div class="font-semibold text-xl">Add your API keys</div>
+        <div class="text-sm text-white/60">Drop your keys into <code>.env</code>. They never leave your machine.</div>
+      </div>
+      <div class="space-y-3">
+        <div class="text-[#00f5ff] font-mono text-sm">03</div>
+        <div class="font-semibold text-xl">Start the full stack</div>
+        <div class="text-sm text-white/60"><code>docker compose --profile full up -d</code></div>
+      </div>
+      <div class="space-y-3">
+        <div class="text-[#00f5ff] font-mono text-sm">04</div>
+        <div class="font-semibold text-xl">Click any service</div>
+        <div class="text-sm text-white/60">Every pillar and service is immediately accessible from this page.</div>
       </div>
     </div>
-  </section>
-
-  <!-- DIFFERENTIATORS -->
-  <section class="container">
-    <h2>Built different. Stays different.</h2>
-    <div class="diff-grid" style="margin-top: 48px;">
-      <div class="diff">
-        <h4>Local-first by default</h4>
-        <p style="color:#888">Every pillar runs on your machine or private infra. No data leaves unless you say so.</p>
-      </div>
-      <div class="diff">
-        <h4>Agent-native everything</h4>
-        <p style="color:#888">Every component is designed to be called by agents, not just humans clicking buttons.</p>
-      </div>
-      <div class="diff">
-        <h4>TokenOS economics</h4>
-        <p style="color:#888">Usage metering, forecasting, and budget guardrails across the entire stack. No surprise bills.</p>
-      </div>
-      <div class="diff">
-        <h4>Security without compromise</h4>
-        <p style="color:#888">Executor Gateway + narrow scopes + human-reviewed Change Requests. Keys never leak.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ROADMAP -->
-  <section class="container">
-    <h2>Future-proof by design.</h2>
-    <div class="roadmap" style="margin-top: 48px;">
-      <div class="roadmap-item">
-        <div class="quarter">Q3 2026</div>
-        <div><strong>Full TokenOS dashboard</strong> — live burn, forecasting, per-agent cost attribution, exportable P&amp;L</div>
-      </div>
-      <div class="roadmap-item">
-        <div class="quarter">Q4 2026</div>
-        <div><strong>Agent Marketplace</strong> — discover, install, and compose agents across all five pillars</div>
-      </div>
-      <div class="roadmap-item">
-        <div class="quarter">2027</div>
-        <div><strong>Multi-tenant Enterprise</strong> — SSO, audit logs, custom model routing, on-prem deployment</div>
-      </div>
-      <div class="roadmap-item">
-        <div class="quarter">Ongoing</div>
-        <div><strong>12+ new connectors</strong> — every major local and cloud tool will have a first-class MCP integration</div>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <!-- FINAL CTA -->
-  <div class="container">
-    <div class="final-cta">
-      <h2>Own your agents.<br>Own your future.</h2>
-      <p>The best platforms give you ownership. The best tools disappear into the background.</p>
-      <div class="cta-group">
-        <a href="#quickstart" class="btn btn-primary">Deploy now →</a>
-        <a href="https://github.com/Sm0k367/smoken-tokens" class="btn btn-secondary" target="_blank">Star on GitHub</a>
+  <div class="max-w-screen-xl mx-auto px-6 pb-20">
+    <div class="bg-gradient-to-br from-[#111] to-black border border-white/10 rounded-3xl p-16 text-center">
+      <h2 class="text-6xl font-semibold tracking-tighter">Ready to own your agents?</h2>
+      <p class="mt-4 max-w-md mx-auto text-xl text-white/60">The best platforms give you ownership. The best tools disappear into the background.</p>
+      
+      <div class="mt-10 flex justify-center gap-4">
+        <button onclick="showDeployModal()" 
+                class="btn btn-cyan px-14 py-4 text-xl font-semibold rounded-3xl">Deploy Now — It's Free</button>
+        <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank"
+           class="btn btn-outline px-14 py-4 text-xl font-semibold rounded-3xl">Star on GitHub</a>
       </div>
     </div>
   </div>
 
   <!-- FOOTER -->
-  <footer class="container">
-    <div class="footer-grid">
-      <div>
-        Epic Agent Fabric<br>
-        <span style="font-size:0.85rem">Built with curiosity • 2026</span>
-      </div>
-      <div style="text-align:right">
-        epictechai@gmail.com<br>
-        @EpicTechAI<br>
-        <a href="https://github.com/Sm0k367/smoken-tokens" style="color:#666">github.com/Sm0k367/smoken-tokens</a>
-      </div>
+  <footer class="border-t border-white/10 py-12">
+    <div class="max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row justify-between text-sm text-white/50">
+      <div>Epic Agent Fabric • Built with curiosity • 2026</div>
+      <div class="mt-4 md:mt-0">epictechai@gmail.com • @EpicTechAI</div>
     </div>
   </footer>
+
+  <!-- DEPLOY MODAL -->
+  <div id="deploy-modal" onclick="if (event.target.id === 'deploy-modal') hideDeployModal()" 
+       class="hidden fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-6">
+    <div onclick="event.stopImmediatePropagation()" class="bg-[#0a0a0a] border border-white/20 rounded-3xl max-w-lg w-full p-8">
+      <div class="flex justify-between items-center mb-6">
+        <div>
+          <div class="font-semibold text-3xl tracking-tight">Deploy Epic Agent Fabric</div>
+          <div class="text-white/60 text-sm mt-1">One-click local installation</div>
+        </div>
+        <button onclick="hideDeployModal()" class="text-3xl leading-none text-white/40 hover:text-white">×</button>
+      </div>
+      
+      <div class="space-y-4">
+        <div onclick="copyAndDeploy(1)" class="cursor-pointer flex items-center gap-4 p-5 bg-white/5 hover:bg-white/10 rounded-2xl transition-all">
+          <div class="font-mono w-6 text-center text-emerald-400">1</div>
+          <div class="flex-1">
+            <div class="font-medium">Clone repository</div>
+            <div class="text-xs text-white/50 font-mono mt-0.5">git clone https://github.com/Sm0k367/smoken-tokens.git</div>
+          </div>
+        </div>
+        
+        <div onclick="copyAndDeploy(2)" class="cursor-pointer flex items-center gap-4 p-5 bg-white/5 hover:bg-white/10 rounded-2xl transition-all">
+          <div class="font-mono w-6 text-center text-emerald-400">2</div>
+          <div class="flex-1">
+            <div class="font-medium">Run the setup script</div>
+            <div class="text-xs text-white/50 font-mono mt-0.5">cd smoken-tokens &amp;&amp; ./scripts/setup.sh</div>
+          </div>
+        </div>
+        
+        <div onclick="copyAndDeploy(3)" class="cursor-pointer flex items-center gap-4 p-5 bg-white/5 hover:bg-white/10 rounded-2xl transition-all">
+          <div class="font-mono w-6 text-center text-emerald-400">3</div>
+          <div class="flex-1">
+            <div class="font-medium">Start the full platform</div>
+            <div class="text-xs text-white/50 font-mono mt-0.5">docker compose --profile full up -d</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-8">
+        <button onclick="hideDeployModal()" 
+                class="text-sm text-white/50 hover:text-white transition-colors">I'll do it manually instead</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function tailwindInit() {
+      document.documentElement.style.setProperty('--accent', '#00f5ff');
+    }
+    
+    function copyCommand(element) {
+      const pre = element.parentElement.nextElementSibling;
+      if (!pre) return;
+      
+      navigator.clipboard.writeText(pre.innerText.trim()).then(() => {
+        const originalText = element.innerHTML;
+        element.innerHTML = `<span class="text-emerald-400">Copied!</span>`;
+        setTimeout(() => {
+          element.innerHTML = originalText;
+        }, 1800);
+      });
+    }
+
+    function copyAndDeploy(step) {
+      const commands = [
+        "git clone https://github.com/Sm0k367/smoken-tokens.git",
+        "cd smoken-tokens && ./scripts/setup.sh",
+        "docker compose --profile full up -d"
+      ];
+      
+      navigator.clipboard.writeText(commands[step-1]).then(() => {
+        const btns = document.querySelectorAll('#deploy-modal .cursor-pointer');
+        btns[step-1].style.border = '1px solid #22c55e';
+        btns[step-1].style.background = 'rgba(16,185,129,0.1)';
+        
+        setTimeout(() => {
+          if (step < 3) {
+            btns[step].click();
+          } else {
+            hideDeployModal();
+            window.open('https://github.com/Sm0k367/smoken-tokens', '_blank');
+          }
+        }, 900);
+      });
+    }
+
+    function showDeployModal() {
+      document.getElementById('deploy-modal').classList.remove('hidden');
+      document.getElementById('deploy-modal').classList.add('flex');
+    }
+    
+    function hideDeployModal() {
+      const modal = document.getElementById('deploy-modal');
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    }
+
+    function launchService(pillar) {
+      const urls = {
+        'media': 'http://localhost:5001',
+        'agent-os': 'http://localhost:8787',
+        'intelligence': 'http://localhost:6001',
+        'tokenos': 'http://localhost:7777',
+        'prompt': 'http://localhost:4001'
+      };
+      
+      if (urls[pillar]) {
+        window.open(urls[pillar], '_blank');
+      } else {
+        alert("This service is starting up. Please run `docker compose up -d` first.");
+      }
+    }
+
+    function showDocs(pillar) {
+      const docs = {
+        'media': 'https://github.com/Sm0k367/smoken-tokens/tree/main/integrations',
+        'agent-os': 'https://github.com/Sm0k367/smoken-tokens/tree/main/.kortix/opencode/skills/agent-os',
+        'intelligence': 'https://github.com/Sm0k367/smoken-tokens/tree/main/.kortix/opencode/skills/intelligence-fabric',
+        'tokenos': 'https://github.com/Sm0k367/smoken-tokens/tree/main/.kortix/opencode/skills/tokenos',
+        'prompt': 'https://github.com/Sm0k367/smoken-tokens/tree/main/.kortix/opencode/skills/prompt-layer'
+      };
+      
+      window.open(docs[pillar] || 'https://github.com/Sm0k367/smoken-tokens', '_blank');
+    }
+
+    // Keyboard escape for modal
+    document.addEventListener('keydown', function(e) {
+      if (e.key === "Escape") {
+        const modal = document.getElementById('deploy-modal');
+        if (!modal.classList.contains('hidden')) hideDeployModal();
+      }
+    });
+
+    // Boot
+    tailwindInit();
+    console.log('%c[Epic Agent Fabric] Production landing page ready — all buttons wired.', 'color:#444');
+  </script>
 </body>
 </html>
