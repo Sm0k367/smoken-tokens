@@ -17,6 +17,11 @@ services:
       context: ./integrations/executor-gateway
     ports:
       - "8787:8787"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - STRIPE_API_KEY=${STRIPE_API_KEY:-}
+      - ZAPIER_API_KEY=${ZAPIER_API_KEY:-}
     restart: unless-stopped
 
   # TokenOS - Usage tracking and economics
@@ -25,6 +30,11 @@ services:
       context: ./integrations/tokenos
     ports:
       - "7777:7777"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - STRIPE_API_KEY=${STRIPE_API_KEY:-}
+      - ZAPIER_API_KEY=${ZAPIER_API_KEY:-}
     depends_on:
       - redis
     restart: unless-stopped
