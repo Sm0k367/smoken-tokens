@@ -3,323 +3,297 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Epic Agent Fabric • Production-Ready Local-First Agent OS</title>
+  <title>Epic Agent Fabric</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: 'Inter', system_ui, sans-serif; }
-    .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; }
-    .pillar-card { transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1); }
-    .pillar-card:hover { transform: translateY(-8px); }
-    .btn { transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1); }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-cyan { background-color: #00f5ff; color: #000; }
-    .btn-cyan:hover { background-color: #67faff; box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.3); }
-    .btn-purple { background-color: #a855f7; color: white; }
-    .btn-purple:hover { background-color: #c084fc; box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3); }
-    .btn-outline { background: transparent; border: 1px solid #444; }
-    .btn-outline:hover { border-color: #00f5ff; color: #00f5ff; }
-    .service-btn { transition: all 0.15s ease; }
-    .service-btn:hover { transform: scale(1.05); }
-    .os-tab { transition: all 0.15s ease; }
-    .os-tab.active { background: #111; color: #00f5ff; border-bottom: 2px solid #00f5ff; }
-    .command-box { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; letter-spacing: -0.03em; }
+    
+    .nav { border-bottom: 1px solid #111; }
+    
+    .service {
+      transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .service:hover {
+      border-color: #333;
+      background: #0a0a0a;
+    }
+    
+    .btn {
+      transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .toast {
+      animation: toastSlideIn 0.3s ease forwards;
+    }
+    
+    @keyframes toastSlideIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
   </style>
 </head>
 <body class="bg-[#050505] text-white">
 
   <!-- NAV -->
-  <nav class="border-b border-white/10 bg-[#050505]/80 backdrop-blur-lg sticky top-0 z-50">
-    <div class="max-w-screen-xl mx-auto px-6">
-      <div class="flex items-center justify-between h-20">
-        <div class="flex items-center gap-x-3">
-          <div class="w-9 h-9 bg-[#00f5ff] rounded-2xl flex items-center justify-center"><span class="text-black font-bold text-3xl tracking-tighter">E</span></div>
-          <div><span class="font-semibold text-2xl tracking-tighter">Epic Agent Fabric</span></div>
+  <nav class="nav sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-lg">
+    <div class="max-w-screen-xl mx-auto px-8 flex items-center justify-between h-20">
+      <div class="flex items-center gap-x-3">
+        <div class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center">
+          <span class="text-black font-bold text-2xl tracking-tighter">E</span>
         </div>
-        <div class="hidden md:flex items-center gap-x-9 text-sm">
-          <a href="#deploy" class="hover:text-[#00f5ff] transition-colors">Deploy</a>
-          <a href="#pillars" class="hover:text-[#00f5ff] transition-colors">Pillars</a>
-          <a href="#services" class="hover:text-[#00f5ff] transition-colors">Services</a>
-          <a href="#how" class="hover:text-[#00f5ff] transition-colors">How it works</a>
-        </div>
-        <div class="flex items-center gap-x-3">
-          <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank" class="px-5 py-2.5 text-sm border border-white/20 hover:border-white/40 rounded-3xl transition-all">GitHub</a>
-          <button onclick="showDeployModal()" class="px-6 py-2.5 bg-[#00f5ff] hover:bg-[#67faff] text-black text-sm font-semibold rounded-3xl">Deploy Now</button>
-          <button onclick="showAdminPanel()" class="px-4 py-2 text-sm border border-white/20 hover:border-white/40 rounded-3xl">Admin</button>
-        </div>
+        <span class="font-semibold text-xl tracking-tight">Epic Agent Fabric</span>
+      </div>
+      
+      <div class="flex items-center gap-x-9 text-sm">
+        <a href="#install" class="text-white/60 hover:text-white transition-colors">Install</a>
+        <a href="#platform" class="text-white/60 hover:text-white transition-colors">Platform</a>
+        <a href="#services" class="text-white/60 hover:text-white transition-colors">Services</a>
+        <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank" class="text-white/60 hover:text-white transition-colors">GitHub</a>
+      </div>
+
+      <div>
+        <button onclick="showInstallModal()" 
+                class="px-6 py-2.5 bg-white text-black text-sm font-semibold rounded-2xl hover:bg-white/90 transition-all">
+          Install
+        </button>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <div class="max-w-screen-xl mx-auto px-6 pt-16 pb-12">
-    <div class="max-w-4xl mx-auto text-center">
-      <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/5 border border-white/10 mb-6">
-        <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-        <span class="text-sm font-medium text-emerald-400">PRODUCTION READY • SELF-HOSTABLE • 2026</span>
+  <div class="max-w-screen-xl mx-auto px-8 pt-20 pb-24">
+    <div class="max-w-2xl">
+      <div class="inline-block px-3 py-1 text-xs tracking-[3px] bg-white/5 rounded-full mb-6">LOCAL • TOKEN NATIVE • 2026</div>
+      
+      <h1 class="text-7xl font-semibold tracking-tighter leading-none">The agent OS<br>you actually own.</h1>
+      
+      <p class="mt-6 text-xl text-white/60">Run powerful agents locally.<br>No subscriptions. No vendor lock-in.</p>
+      
+      <div class="mt-10 flex items-center gap-x-4">
+        <button onclick="showInstallModal()" 
+                class="btn px-8 py-4 bg-white text-black font-semibold rounded-3xl text-lg">Install locally</button>
+        <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank"
+           class="btn px-8 py-4 border border-white/20 hover:bg-white/5 rounded-3xl text-lg">View source</a>
       </div>
-      <h1 class="text-7xl md:text-8xl font-semibold tracking-tighter leading-none mb-4">The production-ready,<br>local-first agent OS.</h1>
-      <p class="text-2xl text-white/60 max-w-lg mx-auto mb-10">Deploy the full stack in 60 seconds.<br>12 powerful tools. Token-native. Zero vendor lock-in.</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button onclick="showDeployModal()" class="btn btn-cyan px-10 py-4 text-xl font-semibold rounded-3xl flex items-center justify-center gap-x-3">Deploy in 60 seconds →</button>
-        <a href="#services" class="btn btn-outline px-10 py-4 text-xl font-semibold rounded-3xl">Explore live services</a>
-      </div>
-      <p class="mt-6 text-sm text-white/40">No cloud required • Runs 100% on your hardware</p>
     </div>
   </div>
 
-  <!-- QUICK DEPLOY -->
-  <div id="deploy" class="max-w-screen-xl mx-auto px-6 py-12">
-    <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-12">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <div class="text-emerald-400 text-sm font-semibold tracking-widest mb-3">ONE COMMAND INSTALL</div>
-          <h2 class="text-5xl font-semibold tracking-tighter">Get the entire platform running locally.</h2>
-          <p class="mt-4 text-lg text-white/70">Everything you need — Executor Gateway, TokenOS, Media Fabric, Intelligence — in a single Docker stack.</p>
-        </div>
-        <div>
-          <div class="bg-black/60 rounded-2xl p-1 border border-white/10">
-            <div class="flex items-center justify-between px-5 py-3 border-b border-white/10">
-              <div class="font-mono text-sm text-white/60">Terminal / PowerShell</div>
-              <button onclick="copyCommand(this)" class="text-xs px-3 py-1 bg-white/5 hover:bg-white/10 rounded-xl">Copy</button>
-            </div>
-            <pre class="command-box p-5 text-sm text-emerald-400 overflow-x-auto">git clone https://github.com/Sm0k367/smoken-tokens.git
+  <!-- INSTALL -->
+  <div id="install" class="max-w-screen-xl mx-auto px-8 py-16 border-t border-white/10">
+    <div class="max-w-xl">
+      <div class="text-sm tracking-widest text-white/50 mb-3">GET STARTED</div>
+      <h2 class="text-5xl font-semibold tracking-tighter">Install in 60 seconds.</h2>
+    </div>
+
+    <div class="mt-10 grid md:grid-cols-2 gap-6 max-w-4xl">
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
+        <div class="font-medium mb-1">Windows</div>
+        <div class="text-sm text-white/50 mb-6">PowerShell</div>
+        <pre class="bg-black p-5 rounded-2xl text-sm text-emerald-400 overflow-auto">git clone https://github.com/Sm0k367/smoken-tokens.git
 cd smoken-tokens
-./scripts/setup.sh   # macOS / Linux
-# or
-.\scripts\setup.ps1  # Windows</pre>
-          </div>
+.\scripts\setup.ps1</pre>
+      </div>
+
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
+        <div class="font-medium mb-1">macOS / Linux</div>
+        <div class="text-sm text-white/50 mb-6">Terminal</div>
+        <pre class="bg-black p-5 rounded-2xl text-sm text-emerald-400 overflow-auto">git clone https://github.com/Sm0k367/smoken-tokens.git
+cd smoken-tokens
+./scripts/setup.sh</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORM -->
+  <div id="platform" class="max-w-screen-xl mx-auto px-8 py-16 border-t border-white/10">
+    <div class="max-w-xl mb-10">
+      <div class="text-sm tracking-widest text-white/50 mb-3">THE PLATFORM</div>
+      <h2 class="text-5xl font-semibold tracking-tighter">Five pillars.<br>One system.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-7"><div class="text-sm text-[#00f5ff] mb-3">01</div><div class="font-semibold">Media Fabric</div><div class="text-sm text-white/50 mt-6">Open Montage, OpenCut, Voicebox, FluidVoice, Penpot</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-7"><div class="text-sm text-[#00f5ff] mb-3">02</div><div class="font-semibold">Agent OS Layer</div><div class="text-sm text-white/50 mt-6">Codebase Memory, Zapier MCP, Agent Reach, Executor</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-7"><div class="text-sm text-[#00f5ff] mb-3">03</div><div class="font-semibold">Intelligence Fabric</div><div class="text-sm text-white/50 mt-6">TimesFM, Daily Stock Analysis, World Monitor</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-7"><div class="text-sm text-[#00f5ff] mb-3">04</div><div class="font-semibold">TokenOS</div><div class="text-sm text-white/50 mt-6">Usage metering, burn forecasting, budget guardrails</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-7"><div class="text-sm text-[#00f5ff] mb-3">05</div><div class="font-semibold">Prompt Layer</div><div class="text-sm text-white/50 mt-6">System prompt research &amp; guardrails</div></div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div id="services" class="max-w-screen-xl mx-auto px-8 py-16 border-t border-white/10">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <div class="text-sm tracking-widest text-white/50 mb-3">CONTROL PANEL</div>
+        <h3 class="text-4xl font-semibold tracking-tighter">Live services</h3>
+      </div>
+      <button onclick="checkAllServices()" 
+              class="px-5 py-2 text-sm border border-white/20 hover:bg-white/5 rounded-2xl transition-all flex items-center gap-x-2">
+        <span>Check Status</span>
+      </button>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div onclick="openService(8787, 'Executor Gateway', this)" class="service cursor-pointer bg-[#0a0a0a] border border-white/10 p-6 rounded-3xl relative">
+        <div class="font-medium">Executor Gateway</div>
+        <div class="flex items-center justify-between mt-12">
+          <div class="text-xs text-white/40">localhost:8787</div>
+          <div class="status-dot w-2 h-2 rounded-full bg-white/20"></div>
+        </div>
+      </div>
+      <div onclick="openService(7777, 'TokenOS', this)" class="service cursor-pointer bg-[#0a0a0a] border border-white/10 p-6 rounded-3xl relative">
+        <div class="font-medium">TokenOS</div>
+        <div class="flex items-center justify-between mt-12">
+          <div class="text-xs text-white/40">localhost:7777</div>
+          <div class="status-dot w-2 h-2 rounded-full bg-white/20"></div>
+        </div>
+      </div>
+      <div onclick="openService(9001, 'Penpot', this)" class="service cursor-pointer bg-[#0a0a0a] border border-white/10 p-6 rounded-3xl relative">
+        <div class="font-medium">Penpot</div>
+        <div class="flex items-center justify-between mt-12">
+          <div class="text-xs text-white/40">localhost:9001</div>
+          <div class="status-dot w-2 h-2 rounded-full bg-white/20"></div>
+        </div>
+      </div>
+      <div onclick="openService(5001, 'Voicebox', this)" class="service cursor-pointer bg-[#0a0a0a] border border-white/10 p-6 rounded-3xl relative">
+        <div class="font-medium">Voicebox</div>
+        <div class="flex items-center justify-between mt-12">
+          <div class="text-xs text-white/40">localhost:5001</div>
+          <div class="status-dot w-2 h-2 rounded-full bg-white/20"></div>
         </div>
       </div>
     </div>
+    
+    <p class="text-xs text-white/30 mt-6">Click "Check Status" to verify which services are running.</p>
   </div>
 
-  <!-- PILLARS -->
-  <div id="pillars" class="max-w-screen-xl mx-auto px-6 py-16">
-    <div class="text-center mb-12">
-      <div class="text-[#00f5ff] text-sm font-semibold tracking-[3px]">THE PLATFORM</div>
-      <h2 class="text-6xl font-semibold tracking-tighter mt-2">Five pillars.<br>Twelve tools. One OS.</h2>
-    </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Media Fabric -->
-      <div class="pillar-card bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="flex justify-between items-start"><div><div class="text-[#00f5ff] font-semibold">01</div><h3 class="text-3xl font-semibold mt-2 tracking-tight">Media Fabric</h3></div><div class="px-3 py-1 text-xs rounded-2xl bg-emerald-500/10 text-emerald-400 font-medium">LIVE</div></div>
-        <p class="mt-6 text-white/60">End-to-end local video, audio, voice cloning &amp; design pipelines that agents fully control.</p>
-        <div class="mt-8 flex gap-3"><button onclick="launchService('media')" class="btn btn-cyan flex-1 py-3 text-sm font-semibold rounded-2xl">Launch Media Stack</button><button onclick="showDocs('media')" class="btn btn-outline flex-1 py-3 text-sm font-semibold rounded-2xl">View Docs</button></div>
+  <!-- FOOTER -->
+  <div class="max-w-screen-xl mx-auto px-8 py-12 border-t border-white/10 text-sm text-white/40 flex justify-between">
+    <div>Epic Agent Fabric • 2026</div>
+    <div>epictechai@gmail.com</div>
+  </div>
+
+  <!-- INSTALL MODAL -->
+  <div id="install-modal" onclick="if (event.target.id === 'install-modal') hideInstallModal()" class="hidden fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-6">
+    <div onclick="event.stopImmediatePropagation()" class="bg-[#0a0a0a] border border-white/10 rounded-3xl w-full max-w-md p-8">
+      <div class="flex justify-between mb-8">
+        <div class="font-semibold text-xl">Install Epic Agent Fabric</div>
+        <button onclick="hideInstallModal()" class="text-3xl text-white/40 hover:text-white">×</button>
       </div>
-      <!-- Agent OS -->
-      <div class="pillar-card bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="flex justify-between items-start"><div><div class="text-[#00f5ff] font-semibold">02</div><h3 class="text-3xl font-semibold mt-2 tracking-tight">Agent OS Layer</h3></div><div class="px-3 py-1 text-xs rounded-2xl bg-emerald-500/10 text-emerald-400 font-medium">LIVE</div></div>
-        <p class="mt-6 text-white/60">Deep, secure integrations that give agents real power without ever seeing your keys.</p>
-        <div class="mt-8 flex gap-3"><button onclick="launchService('agent-os')" class="btn btn-cyan flex-1 py-3 text-sm font-semibold rounded-2xl">Launch Agent OS</button><button onclick="showDocs('agent-os')" class="btn btn-outline flex-1 py-3 text-sm font-semibold rounded-2xl">View Docs</button></div>
-      </div>
-      <!-- Intelligence -->
-      <div class="pillar-card bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="flex justify-between items-start"><div><div class="text-[#00f5ff] font-semibold">03</div><h3 class="text-3xl font-semibold mt-2 tracking-tight">Intelligence Fabric</h3></div><div class="px-3 py-1 text-xs rounded-2xl bg-emerald-500/10 text-emerald-400 font-medium">LIVE</div></div>
-        <p class="mt-6 text-white/60">Zero-shot forecasting, market signals, and live global context for every agent.</p>
-        <div class="mt-8 flex gap-3"><button onclick="launchService('intelligence')" class="btn btn-cyan flex-1 py-3 text-sm font-semibold rounded-2xl">Launch Intelligence</button><button onclick="showDocs('intelligence')" class="btn btn-outline flex-1 py-3 text-sm font-semibold rounded-2xl">View Docs</button></div>
-      </div>
-      <!-- TokenOS -->
-      <div class="pillar-card bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="flex justify-between items-start"><div><div class="text-[#00f5ff] font-semibold">04</div><h3 class="text-3xl font-semibold mt-2 tracking-tight">TokenOS</h3></div><div class="px-3 py-1 text-xs rounded-2xl bg-violet-500/10 text-violet-400 font-medium">CORE</div></div>
-        <p class="mt-6 text-white/60">Real-time usage metering, burn forecasting, budget guardrails, and token-native billing.</p>
-        <div class="mt-8 flex gap-3"><button onclick="launchService('tokenos')" class="btn btn-purple flex-1 py-3 text-sm font-semibold rounded-2xl">Open TokenOS Dashboard</button><button onclick="showDocs('tokenos')" class="btn btn-outline flex-1 py-3 text-sm font-semibold rounded-2xl">View Docs</button></div>
-      </div>
-      <!-- Prompt Layer -->
-      <div class="pillar-card bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="flex justify-between items-start"><div><div class="text-[#00f5ff] font-semibold">05</div><h3 class="text-3xl font-semibold mt-2 tracking-tight">Prompt Layer</h3></div><div class="px-3 py-1 text-xs rounded-2xl bg-amber-500/10 text-amber-400 font-medium">RESEARCH</div></div>
-        <p class="mt-6 text-white/60">Living research dataset of system prompts, guardrails, and agent behavior patterns.</p>
-        <div class="mt-8 flex gap-3"><button onclick="launchService('prompt')" class="btn btn-purple flex-1 py-3 text-sm font-semibold rounded-2xl">Explore Prompt Research</button><button onclick="showDocs('prompt')" class="btn btn-outline flex-1 py-3 text-sm font-semibold rounded-2xl">View Docs</button></div>
+      
+      <div class="space-y-4 text-sm">
+        <div class="p-5 bg-black rounded-2xl"><div class="text-xs text-white/50 mb-1">WINDOWS</div><div class="font-mono text-emerald-400">.\scripts\setup.ps1</div></div>
+        <div class="p-5 bg-black rounded-2xl"><div class="text-xs text-white/50 mb-1">MACOS / LINUX</div><div class="font-mono text-emerald-400">./scripts/setup.sh</div></div>
       </div>
     </div>
   </div>
 
-  <!-- LIVE SERVICES -->
-  <div id="services" class="max-w-screen-xl mx-auto px-6 py-12">
-    <div class="mb-8"><h2 class="text-5xl font-semibold tracking-tighter">Live services running locally</h2></div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div onclick="window.open('http://localhost:8787', '_blank')" class="service-btn cursor-pointer bg-[#0a0a0a] hover:bg-[#111] border border-white/10 hover:border-[#00f5ff]/40 p-6 rounded-3xl"><div class="flex justify-between"><div class="font-semibold">Executor Gateway</div><div class="text-xs px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded">8787</div></div><div class="text-xs text-white/50 mt-6">Secure MCP server • All external calls</div></div>
-      <div onclick="window.open('http://localhost:7777', '_blank')" class="service-btn cursor-pointer bg-[#0a0a0a] hover:bg-[#111] border border-white/10 hover:border-violet-400/40 p-6 rounded-3xl"><div class="flex justify-between"><div class="font-semibold">TokenOS Dashboard</div><div class="text-xs px-2 py-0.5 bg-violet-500/10 text-violet-400 rounded">7777</div></div><div class="text-xs text-white/50 mt-6">Usage • Forecasting • Budgets</div></div>
-      <div onclick="window.open('http://localhost:9001', '_blank')" class="service-btn cursor-pointer bg-[#0a0a0a] hover:bg-[#111] border border-white/10 hover:border-[#00f5ff]/40 p-6 rounded-3xl"><div class="flex justify-between"><div class="font-semibold">Penpot</div><div class="text-xs px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded">9001</div></div><div class="text-xs text-white/50 mt-6">Self-hosted design tool</div></div>
-      <div onclick="window.open('http://localhost:5001', '_blank')" class="service-btn cursor-pointer bg-[#0a0a0a] hover:bg-[#111] border border-white/10 hover:border-[#00f5ff]/40 p-6 rounded-3xl"><div class="flex justify-between"><div class="font-semibold">Voicebox</div><div class="text-xs px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded">5001</div></div><div class="text-xs text-white/50 mt-6">Local voice cloning &amp; TTS</div></div>
-    </div>
-  </div>
-
-  <!-- HOW IT WORKS -->
-  <div id="how" class="max-w-screen-xl mx-auto px-6 py-20">
-    <h2 class="text-6xl font-semibold tracking-tighter">How it works.<br>Step by step.</h2>
-    <div class="mt-12 grid md:grid-cols-4 gap-8">
-      <div class="space-y-3"><div class="text-[#00f5ff] font-mono text-sm">01</div><div class="font-semibold text-xl">Run the setup script</div><div class="text-sm text-white/60">One command creates volumes, pulls images, and starts the core services.</div></div>
-      <div class="space-y-3"><div class="text-[#00f5ff] font-mono text-sm">02</div><div class="font-semibold text-xl">Add your API keys</div><div class="text-sm text-white/60">Drop your keys into <code>.env</code>. They never leave your machine.</div></div>
-      <div class="space-y-3"><div class="text-[#00f5ff] font-mono text-sm">03</div><div class="font-semibold text-xl">Start the full stack</div><div class="text-sm text-white/60"><code>docker compose --profile full up -d</code></div></div>
-      <div class="space-y-3"><div class="text-[#00f5ff] font-mono text-sm">04</div><div class="font-semibold text-xl">Click any service</div><div class="text-sm text-white/60">Every pillar and service is immediately accessible from this page.</div></div>
-    </div>
-  </div>
-
-  <!-- FINAL CTA -->
-  <div class="max-w-screen-xl mx-auto px-6 pb-20">
-    <div class="bg-gradient-to-br from-[#111] to-black border border-white/10 rounded-3xl p-16 text-center">
-      <h2 class="text-6xl font-semibold tracking-tighter">Ready to own your agents?</h2>
-      <div class="mt-10 flex justify-center gap-4">
-        <button onclick="showDeployModal()" class="btn btn-cyan px-14 py-4 text-xl font-semibold rounded-3xl">Deploy Now — It's Free</button>
-        <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank" class="btn btn-outline px-14 py-4 text-xl font-semibold rounded-3xl">Star on GitHub</a>
-      </div>
-    </div>
-  </div>
-
-  <footer class="border-t border-white/10 py-12">
-    <div class="max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row justify-between text-sm text-white/50">
-      <div>Epic Agent Fabric • Built with curiosity • 2026</div>
-      <div class="mt-4 md:mt-0">epictechai@gmail.com • @EpicTechAI</div>
-    </div>
-  </footer>
-
-  <!-- DEPLOY MODAL -->
-  <div id="deploy-modal" onclick="if (event.target.id === 'deploy-modal') hideDeployModal()" class="hidden fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-6">
-    <div onclick="event.stopImmediatePropagation()" class="bg-[#0a0a0a] border border-white/20 rounded-3xl w-full max-w-2xl p-8">
-      <div class="flex justify-between items-center mb-6">
-        <div><div class="font-semibold text-3xl tracking-tight">Deploy Epic Agent Fabric</div><div class="text-white/60 text-sm mt-1">Choose your operating system</div></div>
-        <button onclick="hideDeployModal()" class="text-3xl text-white/40 hover:text-white">×</button>
-      </div>
-
-      <!-- OS Tabs -->
-      <div class="flex border-b border-white/10 mb-6">
-        <div onclick="switchOSTab(0)" class="os-tab active px-6 py-3 text-sm font-medium cursor-pointer flex-1 text-center" data-os="0">Windows</div>
-        <div onclick="switchOSTab(1)" class="os-tab px-6 py-3 text-sm font-medium cursor-pointer flex-1 text-center" data-os="1">macOS / Linux</div>
-      </div>
-
-      <div id="os-content">
-        <!-- Populated by JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ADMIN PANEL -->
-  <div id="admin-modal" onclick="if (event.target.id === 'admin-modal') hideAdminPanel()" class="hidden fixed inset-0 bg-black/90 z-[110] flex items-center justify-center p-6">
-    <div onclick="event.stopImmediatePropagation()" class="bg-[#0a0a0a] border border-white/20 rounded-3xl w-full max-w-5xl overflow-hidden">
-      <div class="px-8 py-5 border-b border-white/10 flex items-center justify-between bg-black/40">
-        <div class="flex items-center gap-x-4"><div class="font-semibold text-2xl">Admin Dashboard</div><div class="px-3 py-1 text-xs rounded-2xl bg-emerald-500/10 text-emerald-400 font-medium">PRODUCTION</div></div>
-        <button onclick="hideAdminPanel()" class="text-3xl text-white/40 hover:text-white">×</button>
-      </div>
-      <div class="flex border-b border-white/10 px-2">
-        <div onclick="switchAdminTab(0)" class="admin-tab active px-6 py-4 text-sm font-medium cursor-pointer" data-tab="0">Overview</div>
-        <div onclick="switchAdminTab(1)" class="admin-tab px-6 py-4 text-sm font-medium cursor-pointer" data-tab="1">Services</div>
-        <div onclick="switchAdminTab(2)" class="admin-tab px-6 py-4 text-sm font-medium cursor-pointer" data-tab="2">TokenOS</div>
-        <div onclick="switchAdminTab(3)" class="admin-tab px-6 py-4 text-sm font-medium cursor-pointer" data-tab="3">Logs</div>
-      </div>
-      <div id="admin-content" class="p-8 min-h-[420px]"></div>
-    </div>
-  </div>
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container" class="fixed top-6 right-6 z-[200] flex flex-col gap-3"></div>
 
   <script>
-    function copyCommand(element) {
-      const pre = element.parentElement.nextElementSibling;
-      navigator.clipboard.writeText(pre.innerText.trim()).then(() => {
-        const original = element.innerHTML;
-        element.innerHTML = `<span class="text-emerald-400">Copied!</span>`;
-        setTimeout(() => element.innerHTML = original, 1800);
-      });
+    // Toast System
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      const colors = {
+        success: 'bg-emerald-600',
+        error: 'bg-red-600',
+        info: 'bg-zinc-700'
+      };
+      
+      toast.className = `toast flex items-center gap-x-3 px-5 py-3 rounded-2xl text-sm shadow-lg ${colors[type] || colors.info}`;
+      toast.innerHTML = `
+        <div class="flex-1">${message}</div>
+        <button class="text-white/70 hover:text-white text-lg leading-none">×</button>
+      `;
+      
+      container.appendChild(toast);
+      
+      // Auto dismiss
+      setTimeout(() => {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 3200);
+      
+      // Manual close
+      toast.querySelector('button').onclick = () => {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      };
     }
 
-    let currentOSTab = 0;
-    function switchOSTab(tab) {
-      document.querySelectorAll('.os-tab').forEach(el => el.classList.remove('active'));
-      document.querySelector(`.os-tab[data-os="${tab}"]`).classList.add('active');
-      currentOSTab = tab;
-      renderOSContent(tab);
-    }
-
-    function renderOSContent(tab) {
-      const content = document.getElementById('os-content');
-      let html = '';
-      if (tab === 0) { // Windows
-        html = `
-          <div class="space-y-4">
-            <div class="bg-black/60 p-5 rounded-2xl">
-              <div class="text-sm text-white/60 mb-2">PowerShell (Recommended)</div>
-              <pre class="command-box text-emerald-400 text-sm">git clone https://github.com/Sm0k367/smoken-tokens.git
-cd smoken-tokens
-.\\scripts\\setup.ps1</pre>
-            </div>
-            <div class="text-xs text-white/50">Requires Docker Desktop. Run as Administrator if needed.</div>
-          </div>
-        `;
-      } else { // macOS / Linux
-        html = `
-          <div class="space-y-4">
-            <div class="bg-black/60 p-5 rounded-2xl">
-              <div class="text-sm text-white/60 mb-2">Terminal</div>
-              <pre class="command-box text-emerald-400 text-sm">git clone https://github.com/Sm0k367/smoken-tokens.git
-cd smoken-tokens
-chmod +x scripts/setup.sh
-./scripts/setup.sh</pre>
-            </div>
-          </div>
-        `;
+    function openService(port, name, element) {
+      const url = `http://localhost:${port}`;
+      const win = window.open(url, '_blank');
+      
+      if (!win || win.closed || typeof win.closed === 'undefined') {
+        showToast(`Could not open ${name}. Make sure Docker is running.`, 'error');
+      } else {
+        showToast(`Opening ${name}...`, 'success');
       }
-      content.innerHTML = html;
     }
 
-    function showDeployModal() {
-      document.getElementById('deploy-modal').classList.remove('hidden');
-      document.getElementById('deploy-modal').classList.add('flex');
-      renderOSContent(currentOSTab);
+    async function checkService(port) {
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 1200);
+        
+        await fetch(`http://localhost:${port}`, {
+          method: 'HEAD',
+          mode: 'no-cors',
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeout);
+        return true;
+      } catch {
+        return false;
+      }
     }
-    function hideDeployModal() {
-      const m = document.getElementById('deploy-modal');
+
+    async function checkAllServices() {
+      const cards = document.querySelectorAll('#services .service');
+      const ports = [8787, 7777, 9001, 5001];
+      
+      showToast('Checking services...', 'info');
+      
+      for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
+        const dot = card.querySelector('.status-dot');
+        const isRunning = await checkService(ports[i]);
+        
+        if (isRunning) {
+          dot.className = 'status-dot w-2 h-2 rounded-full bg-emerald-400';
+        } else {
+          dot.className = 'status-dot w-2 h-2 rounded-full bg-red-500';
+        }
+      }
+      
+      showToast('Status check complete', 'success');
+    }
+
+    function showInstallModal() {
+      document.getElementById('install-modal').classList.remove('hidden');
+      document.getElementById('install-modal').classList.add('flex');
+    }
+    function hideInstallModal() {
+      const m = document.getElementById('install-modal');
       m.classList.remove('flex'); m.classList.add('hidden');
     }
 
-    function launchService(pillar) {
-      const urls = { 'media':'http://localhost:5001', 'agent-os':'http://localhost:8787', 'intelligence':'http://localhost:6001', 'tokenos':'http://localhost:7777', 'prompt':'http://localhost:4001' };
-      if (urls[pillar]) window.open(urls[pillar], '_blank');
-      else alert("Service is starting. Run docker compose up -d first.");
-    }
-
-    function showDocs(pillar) {
-      const docs = { 'media':'https://github.com/Sm0k367/smoken-tokens/tree/main/integrations', 'agent-os':'https://github.com/Sm0k367/smoken-tokens/tree/main/.kortix/opencode/skills/agent-os', 'intelligence':'https://github.com/Sm0k367/smoken-tokens/tree/main/.kortix/opencode/skills/intelligence-fabric', 'tokenos':'https://github.com/Sm0k367/smoken-tokens/tree/main/.kortix/opencode/skills/tokenos', 'prompt':'https://github.com/Sm0k367/smoken-tokens/tree/main/.kortix/opencode/skills/prompt-layer' };
-      window.open(docs[pillar] || 'https://github.com/Sm0k367/smoken-tokens', '_blank');
-    }
-
-    // Admin Panel
-    function showAdminPanel() {
-      const modal = document.getElementById('admin-modal');
-      modal.classList.remove('hidden'); modal.classList.add('flex');
-      renderAdminTab(0);
-    }
-    function hideAdminPanel() {
-      const modal = document.getElementById('admin-modal');
-      modal.classList.remove('flex'); modal.classList.add('hidden');
-    }
-    function switchAdminTab(tab) {
-      document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active'));
-      document.querySelector(`.admin-tab[data-tab="${tab}"]`).classList.add('active');
-      renderAdminTab(tab);
-    }
-    function renderAdminTab(tab) {
-      const content = document.getElementById('admin-content');
-      let html = '';
-      if (tab === 0) html = `<div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="bg-[#111] rounded-2xl p-6"><div class="text-sm text-white/50">Total Services</div><div class="text-5xl font-semibold mt-2">14</div><div class="text-emerald-400 text-sm mt-1">12 healthy • 2 starting</div></div><div class="bg-[#111] rounded-2xl p-6"><div class="text-sm text-white/50">Token Usage (24h)</div><div class="text-5xl font-semibold mt-2">184,291</div><div class="text-emerald-400 text-sm mt-1">↓ 12% from yesterday</div></div><div class="bg-[#111] rounded-2xl p-6"><div class="text-sm text-white/50">Active Agents</div><div class="text-5xl font-semibold mt-2">7</div><div class="text-emerald-400 text-sm mt-1">3 running jobs</div></div></div><div class="mt-8 text-xs text-white/40">Last updated just now • All systems operational</div>`;
-      else if (tab === 1) html = `<div class="space-y-3 text-sm"><div class="flex justify-between p-4 bg-[#111] rounded-2xl"><div>Executor Gateway</div><div class="text-emerald-400">Healthy • 8787</div></div><div class="flex justify-between p-4 bg-[#111] rounded-2xl"><div>TokenOS</div><div class="text-emerald-400">Healthy • 7777</div></div><div class="flex justify-between p-4 bg-[#111] rounded-2xl"><div>Voicebox</div><div class="text-emerald-400">Healthy • 5001</div></div><div class="flex justify-between p-4 bg-[#111] rounded-2xl"><div>Penpot</div><div class="text-emerald-400">Healthy • 9001</div></div><div class="flex justify-between p-4 bg-[#111] rounded-2xl"><div>TimesFM</div><div class="text-amber-400">Starting • 6001</div></div></div>`;
-      else if (tab === 2) html = `<div><div class="text-4xl font-semibold">184,291 tokens used today</div><div class="text-emerald-400 mt-1">Projected monthly: 4.8M tokens</div><div class="mt-8 grid grid-cols-2 gap-4 text-sm"><div class="bg-[#111] p-4 rounded-2xl"><div class="text-white/50">Burn Rate</div><div class="text-2xl mt-1">7,680 / hour</div></div><div class="bg-[#111] p-4 rounded-2xl"><div class="text-white/50">Budget Remaining</div><div class="text-2xl mt-1 text-emerald-400">82%</div></div></div></div>`;
-      else if (tab === 3) html = `<div class="font-mono text-xs bg-black p-6 rounded-2xl text-emerald-400 h-80 overflow-auto">[2026-06-27 14:32:11] Executor Gateway started<br>[2026-06-27 14:32:14] TokenOS connected to Redis<br>[2026-06-27 14:32:19] Voicebox model loaded<br>[2026-06-27 14:33:02] Agent started job #4821<br>[2026-06-27 14:33:45] TokenOS: Burn forecast updated</div>`;
-      content.innerHTML = html;
-    }
-
+    // Keyboard escape
     document.addEventListener('keydown', function(e) {
       if (e.key === "Escape") {
-        const deploy = document.getElementById('deploy-modal');
-        const admin = document.getElementById('admin-modal');
-        if (!deploy.classList.contains('hidden')) hideDeployModal();
-        else if (!admin.classList.contains('hidden')) hideAdminPanel();
+        const modal = document.getElementById('install-modal');
+        if (!modal.classList.contains('hidden')) hideInstallModal();
       }
     });
 
-    // Boot with Windows tab as default
-    function init() {
-      document.querySelector('.os-tab[data-os="0"]').classList.add('active');
-      console.log('%c[Epic Agent Fabric] Fully cross-platform landing page ready.', 'color:#444');
-    }
-    init();
+    console.log('%c[Epic Agent Fabric] Sleek landing page with toast + status check loaded.', 'color:#444');
   </script>
 </body>
 </html>
