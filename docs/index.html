@@ -3,66 +3,366 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Epic Agent Fabric • Local-first agent OS</title>
+  <meta name="description" content="Epic Agent Fabric — The local-first, token-native operating system for autonomous agents. Media Fabric, Agent OS, Intelligence Fabric, TokenOS, Prompt Layer.">
+  <title>Epic Agent Fabric • Local-first Agent OS</title>
   <style>
-    body { font-family: system-ui, sans-serif; margin: 0; padding: 0; background: #0a0a0a; color: #fff; }
-    .container { max-width: 960px; margin: 0 auto; padding: 4rem 2rem; }
-    h1 { font-size: 3.5rem; margin: 0 0 1rem; }
-    .tagline { font-size: 1.5rem; color: #888; }
-    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 4rem 0; }
-    .pillar { background: #111; padding: 2rem; border-radius: 12px; }
-    .pillar h3 { margin-top: 0; color: #0ff; }
-    .cta { display: inline-block; background: #0ff; color: #000; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 600; margin-top: 2rem; }
-    footer { margin-top: 6rem; color: #666; font-size: 0.9rem; }
+    :root {
+      --bg: #050505;
+      --card: #0a0a0a;
+      --accent: #00f5ff;
+      --text: #ededed;
+      --muted: #888;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 0; border-bottom: 1px solid #222;
+    }
+    .logo { font-weight: 700; font-size: 1.5rem; letter-spacing: -0.03em; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 120px 0 100px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(3.2rem, 8vw, 5.8rem);
+      line-height: 1.05; margin: 0 0 24px; font-weight: 800; letter-spacing: -0.04em;
+    }
+    .hero .tagline {
+      font-size: 1.35rem; color: var(--muted); max-width: 620px; margin: 0 auto 48px;
+    }
+    .cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 16px 36px; border-radius: 9999px;
+      font-weight: 600; text-decoration: none; font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: var(--accent); color: #000;
+    }
+    .btn-primary:hover { background: #fff; transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent; color: var(--text); border: 1px solid #444;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    section { padding: 100px 0; }
+    h2 {
+      font-size: 2.4rem; margin: 0 0 16px; letter-spacing: -0.03em;
+    }
+    .section-subtitle {
+      font-size: 1.15rem; color: var(--muted); max-width: 560px;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .pillar {
+      background: var(--card);
+      border: 1px solid #222;
+      border-radius: 20px;
+      padding: 36px 32px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .pillar:hover {
+      transform: translateY(-4px);
+      border-color: #333;
+    }
+    .pillar h3 {
+      margin: 0 0 12px; font-size: 1.35rem; color: var(--accent);
+    }
+    .pillar .tools {
+      font-size: 0.95rem; color: var(--muted); line-height: 1.7;
+    }
+    .pillar .status {
+      display: inline-block; font-size: 0.75rem; padding: 2px 10px;
+      border-radius: 999px; background: #111; color: #0f0; margin-top: 16px;
+    }
+
+    .how {
+      background: #0a0a0a;
+      border-radius: 24px;
+      padding: 64px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 48px;
+      margin-top: 48px;
+    }
+    .step {
+      position: relative;
+    }
+    .step-number {
+      font-size: 0.85rem; font-weight: 700; color: var(--accent);
+      margin-bottom: 12px; display: block;
+    }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .diff {
+      background: #0a0a0a; padding: 32px; border-radius: 16px; border: 1px solid #222;
+    }
+    .diff h4 { margin: 0 0 12px; color: var(--accent); }
+
+    .roadmap {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .roadmap-item {
+      display: flex; gap: 24px; align-items: flex-start;
+    }
+    .roadmap-item .quarter {
+      font-weight: 700; color: var(--accent); min-width: 92px;
+    }
+
+    .final-cta {
+      text-align: center;
+      background: linear-gradient(180deg, #111 0%, #050505 100%);
+      padding: 120px 24px;
+      border-radius: 24px;
+    }
+    .final-cta h2 { font-size: 3rem; }
+    .final-cta p { max-width: 480px; margin: 0 auto 40px; color: var(--muted); }
+
+    footer {
+      padding: 60px 0 40px;
+      border-top: 1px solid #222;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .footer-grid {
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 80px 0 60px; }
+      section { padding: 72px 0; }
+      .how { padding: 48px 24px; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Epic Agent Fabric</h1>
-    <p class="tagline">The local-first, token-native operating system for autonomous agents.</p>
-    
-    <p>Run powerful workflows on your hardware.<br>
-    Plug agents into your own tools.<br>
-    Never get trapped in another expensive subscription.</p>
-
-    <a href="https://github.com/Sm0k367/smoken-tokens" class="cta">Get the code →</a>
-
-    <div class="pillars">
-      <div class="pillar">
-        <h3>1. Media Fabric</h3>
-        <p>Open Montage • OpenCut • Voicebox • FluidVoice • Penpot<br>
-        Full local video, audio, voice, and design pipelines agents can control.</p>
-      </div>
-      <div class="pillar">
-        <h3>2. Agent OS Layer</h3>
-        <p>Codebase Memory MCP • Zapier MCP • Agent Reach • kortix-executor<br>
-        Deep, secure integrations that make agents actually useful.</p>
-      </div>
-      <div class="pillar">
-        <h3>3. Intelligence Fabric</h3>
-        <p>TimesFM • Daily Stock Analysis • World Monitor<br>
-        Forecasting, market signals, and live global context for agents.</p>
-      </div>
-      <div class="pillar">
-        <h3>4. TokenOS</h3>
-        <p>Real-time usage metering • Burn forecasting • Budget guardrails • Token-native billing<br>
-        The economic layer that keeps costs visible and controllable.</p>
-      </div>
-      <div class="pillar">
-        <h3>5. Prompt Layer</h3>
-        <p>System Prompt Leaks • Guardrails • Instruction templates<br>
-        Research-backed agent behavior and safety patterns.</p>
+  <!-- NAV -->
+  <nav>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
+      <div class="logo">Epic Agent Fabric</div>
+      <div class="nav-links">
+        <a href="#pillars">Pillars</a>
+        <a href="#how">How it works</a>
+        <a href="#why">Why us</a>
+        <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank">GitHub</a>
       </div>
     </div>
+  </nav>
 
-    <h2>Philosophy</h2>
-    <p><em>"I don't chase trends. I chase leverage."</em></p>
-    <p>The best tools disappear. The best platforms give you ownership.</p>
-
-    <footer>
-      Contact: epictechai@gmail.com · @EpicTechAI<br>
-      Built with curiosity • 2026
-    </footer>
+  <!-- HERO -->
+  <div class="hero container">
+    <h1>The local-first,<br>token-native OS<br>for agents.</h1>
+    <p class="tagline">Run powerful workflows on your hardware.<br>Plug agents into your own tools.<br>Never get trapped in another expensive subscription.</p>
+    
+    <div class="cta-group">
+      <a href="https://github.com/Sm0k367/smoken-tokens" class="btn btn-primary" target="_blank">Get the code →</a>
+      <a href="#pillars" class="btn btn-secondary">Explore the pillars</a>
+    </div>
+    <p style="margin-top: 24px; font-size: 0.9rem; color: #555;">Self-host • Run locally • Own everything • 2026 and beyond</p>
   </div>
+
+  <!-- PROBLEM -->
+  <section class="container">
+    <h2>The industry is broken.</h2>
+    <p class="section-subtitle">Every major agent platform locks you into their cloud, their models, their pricing, and their data. You pay rent on your own creativity.</p>
+    <div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 24px; color: #666;">
+      <div>❌ Vendor lock-in &amp; surprise bills</div>
+      <div>❌ Closed models and hidden system prompts</div>
+      <div>❌ No ownership of your workflows or memory</div>
+      <div>❌ Agents that can’t actually use your tools</div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section id="pillars" class="container">
+    <h2>One platform.<br>Five pillars.<br>Zero compromise.</h2>
+    <p class="section-subtitle">Epic Agent Fabric is the first operating system built from the ground up for autonomous agents that respect your hardware, your budget, and your data.</p>
+
+    <div class="pillars">
+      <!-- Media Fabric -->
+      <div class="pillar">
+        <h3>1. Media Fabric</h3>
+        <div class="tools">
+          Open Montage • OpenCut • Voicebox • FluidVoice • Penpot<br><br>
+          End-to-end local video, audio, voice cloning, and design pipelines that agents fully control.
+        </div>
+        <div class="status">PRODUCTION</div>
+      </div>
+
+      <!-- Agent OS -->
+      <div class="pillar">
+        <h3>2. Agent OS Layer</h3>
+        <div class="tools">
+          Codebase Memory MCP • Zapier MCP • Agent Reach • kortix-executor<br><br>
+          Deep, secure integrations that give agents real power without ever seeing your keys.
+        </div>
+        <div class="status">PRODUCTION</div>
+      </div>
+
+      <!-- Intelligence -->
+      <div class="pillar">
+        <h3>3. Intelligence Fabric</h3>
+        <div class="tools">
+          TimesFM (Google) • Daily Stock Analysis • World Monitor<br><br>
+          Zero-shot forecasting, market signals, and live global context feeding every agent.
+        </div>
+        <div class="status">PRODUCTION</div>
+      </div>
+
+      <!-- TokenOS -->
+      <div class="pillar">
+        <h3>4. TokenOS</h3>
+        <div class="tools">
+          Real-time metering • Burn forecasting • Budget guardrails • Token-native billing<br><br>
+          The economic brain that makes every compute decision visible and controllable.
+        </div>
+        <div class="status">CORE • EXTENDING</div>
+      </div>
+
+      <!-- Prompt Layer -->
+      <div class="pillar">
+        <h3>5. Prompt Layer</h3>
+        <div class="tools">
+          System Prompt Leaks • Guardrails • Instruction templates<br><br>
+          Living research dataset of real-world agent behavior and safety patterns.
+        </div>
+        <div class="status">RESEARCH • GROWING</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="container">
+    <div class="how">
+      <h2>How it actually works</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step-number">01</span>
+          <strong>Install or self-host</strong><br>
+          One Docker command or Tauri desktop app. Everything runs on your hardware.
+        </div>
+        <div class="step">
+          <span class="step-number">02</span>
+          <strong>Connect your tools</strong><br>
+          Zapier MCP + Agent Reach + Executor Gateway give agents Gmail, X, GitHub, Stripe, and 1000+ apps — safely.
+        </div>
+        <div class="step">
+          <span class="step-number">03</span>
+          <strong>Agents run with memory</strong><br>
+          Codebase Memory + living .kortix/memory/ brain means agents understand your projects across sessions.
+        </div>
+        <div class="step">
+          <span class="step-number">04</span>
+          <strong>TokenOS keeps you in control</strong><br>
+          Real-time burn forecasting, budget guardrails, and quarterly compute P&amp;L reports.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIATORS -->
+  <section id="why" class="container">
+    <h2>Built different. Stays different.</h2>
+    <div class="diff-grid" style="margin-top: 48px;">
+      <div class="diff">
+        <h4>Local-first by default</h4>
+        <p style="color:#888">Every pillar runs on your machine or private infra. No data leaves unless you say so.</p>
+      </div>
+      <div class="diff">
+        <h4>Agent-native everything</h4>
+        <p style="color:#888">Every component is designed to be called by agents, not just humans clicking buttons.</p>
+      </div>
+      <div class="diff">
+        <h4>TokenOS economics</h4>
+        <p style="color:#888">Usage metering, forecasting, and budget guardrails across the entire stack. No surprise bills.</p>
+      </div>
+      <div class="diff">
+        <h4>Security without compromise</h4>
+        <p style="color:#888">Executor Gateway + narrow scopes + human-reviewed Change Requests. Keys never leak.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURE PROOF -->
+  <section class="container">
+    <h2>Future-proof by design.</h2>
+    <p class="section-subtitle">We don’t chase trends. We build the infrastructure that trends are built on.</p>
+    
+    <div class="roadmap" style="margin-top: 48px;">
+      <div class="roadmap-item">
+        <div class="quarter">Q3 2026</div>
+        <div><strong>Full TokenOS dashboard</strong> — live burn, forecasting, per-agent cost attribution, exportable P&amp;L</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="quarter">Q4 2026</div>
+        <div><strong>Agent Marketplace</strong> — discover, install, and compose agents across all five pillars</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="quarter">2027</div>
+        <div><strong>Multi-tenant Enterprise</strong> — SSO, audit logs, custom model routing, on-prem deployment</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="quarter">Ongoing</div>
+        <div><strong>12+ new connectors</strong> — every major local and cloud tool will have a first-class MCP integration</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="container">
+    <div class="final-cta">
+      <h2>Own your agents.<br>Own your future.</h2>
+      <p>The best platforms give you ownership. The best tools disappear into the background.</p>
+      <div class="cta-group">
+        <a href="https://github.com/Sm0k367/smoken-tokens" class="btn btn-primary" target="_blank">Star on GitHub</a>
+        <a href="mailto:epictechai@gmail.com" class="btn btn-secondary">Talk to the team</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <div class="footer-grid">
+      <div>
+        Epic Agent Fabric<br>
+        <span style="font-size:0.85rem">Built with curiosity • 2026</span>
+      </div>
+      <div style="text-align:right">
+        epictechai@gmail.com<br>
+        @EpicTechAI<br>
+        <a href="https://github.com/Sm0k367/smoken-tokens" style="color:#666">github.com/Sm0k367/smoken-tokens</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Subtle scroll progress indicator (future-proof extensibility)
+    console.log('%c[Epic Agent Fabric] Landing page initialized — future-proof, agent-native, local-first.', 'color:#444');
+  </script>
 </body>
 </html>
