@@ -1,8 +1,7 @@
-# Epic Agent Fabric - Production Ready (Clean Version)
-# Only includes services that actually work out of the box.
+# Epic Agent Fabric - Full Production Stack (Python + Core)
 
 services:
-  # Core Services
+  # === CORE SERVICES ===
   redis:
     image: redis:7-alpine
     ports:
@@ -37,7 +36,7 @@ services:
       - redis
     restart: unless-stopped
 
-  # Automation
+  # === AUTOMATION ===
   n8n:
     image: n8nio/n8n:latest
     ports:
@@ -50,13 +49,53 @@ services:
       - n8n_data:/home/node/.n8n
     restart: unless-stopped
 
-  # Memory
+  # === MEMORY ===
   chroma:
     image: chromadb/chroma:latest
     ports:
       - "8000:8000"
     volumes:
       - chroma_data:/chroma/chroma
+    restart: unless-stopped
+
+  # === PYTHON MICROSERVICES ===
+  memory-manager:
+    build:
+      context: ./python-services/memory-manager
+    ports:
+      - "8100:8100"
+    depends_on:
+      - chroma
+    restart: unless-stopped
+
+  llm-gateway:
+    build:
+      context: ./python-services/llm-gateway
+    ports:
+      - "8200:8200"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    restart: unless-stopped
+
+  tool-registry:
+    build:
+      context: ./python-services/tool-registry
+    ports:
+      - "8300:8300"
+    depends_on:
+      - executor-gateway
+    restart: unless-stopped
+
+  agent-runner:
+    build:
+      context: ./python-services/agent-runner
+    ports:
+      - "8400:8400"
+    depends_on:
+      - memory-manager
+      - llm-gateway
+      - tool-registry
     restart: unless-stopped
 
 volumes:
