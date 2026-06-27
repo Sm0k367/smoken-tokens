@@ -1,165 +1,141 @@
-# Epic Tech AI
+# Epic Agent Fabric
 
-**The secure autonomous platform that gives agents real power — with Stripe, SOTA models, and an unforgettable project memory brain — without ever leaking a key.**
+**The local-first, token-native operating system for autonomous agents.**  
+Run powerful workflows on your hardware, plug agents into your own tools, and never get trapped in another expensive subscription.
 
 Contact: epictechai@gmail.com · x.com/@EpicTechAI
 
 ---
 
-## What makes Epic Tech AI different
+## Why Epic Agent Fabric exists
 
-Most "agent platforms" give you chatbots that can read files. Epic Tech AI gives you **production-grade autonomous agents** that can:
+Most agent platforms lock you into their cloud, their models, and their pricing. Epic Agent Fabric flips the script:
 
-- Create real Stripe charges via a restricted key you control
-- Call any SOTA model (Groq, Anthropic, OpenAI, etc.) through a unified gateway
-- Maintain a living project memory (`.kortix/memory/`) that survives every session
-- Never see a secret — the Executor Gateway injects credentials server-side
-- Every action is audited, every risky call can be confirmed
+- Everything runs **locally or self-hosted** by default
+- Agents get real power through a secure **Executor Gateway** (no leaked keys)
+- A living **project memory brain** survives every session
+- **TokenOS** makes compute costs visible, forecastable, and controllable
+- 12+ battle-tested open-source tools are unified into one agent-native stack
 
-This is not a toy. This is the foundation for Epic Tech AI's revenue-generating, secure, developer-first platform.
+This is not another chatbot wrapper. This is the foundation for production-grade, revenue-generating, anti-subscription agent workflows.
 
 ---
 
-## Architecture that actually works
+## The Five Pillars
 
-### 1. The Executor Gateway (kortix-executor)
-
-Agents never receive raw API keys. They talk to a single MCP server with four tools:
+### 1. Media Fabric — Generative production you control
+End-to-end local pipelines for video, audio, and design:
 
 | Tool | Purpose |
 |------|---------|
-| `connectors` | List every integration available to this session |
+| **Open Montage** | Research → script → stock footage → render |
+| **OpenCut** | Agentic video editing (CapCut alternative) |
+| **Voicebox** | Local voice cloning & TTS (ElevenLabs alternative) |
+| **FluidVoice** | Offline dictation on Mac (Wispr Flow alternative) |
+| **Penpot** | Self-hosted Figma with design-to-code handoff |
+
+### 2. Agent OS Layer — The real leverage
+Deep integrations that make agents actually useful:
+
+| Tool | Purpose |
+|------|---------|
+| **Codebase Memory MCP** | Persistent repo memory & navigation for coding agents |
+| **Zapier MCP** | One-click connections to Gmail, Calendar, Notion, etc. |
+| **Agent Reach** | Live context from X, Reddit, YouTube, GitHub, web |
+| **kortix-executor** | Secure MCP gateway for Stripe, models, and any API |
+
+### 3. Intelligence Fabric — Context & forecasting
+Agents that understand time, markets, and global events:
+
+| Tool | Purpose |
+|------|---------|
+| **TimesFM** (Google Research) | Zero-shot time-series forecasting for sales, demand, token burn |
+| **Daily Stock Analysis** | Automated watchlist summaries & buy/sell/hold signals |
+| **World Monitor** | Self-hosted geopolitics, risk, and live event dashboard |
+
+### 4. TokenOS — The economic layer (core moat)
+Usage-based metering, real-time forecasting, and budget guardrails across every tool. Pay with compute credits or fiat. Quarterly "compute P&L" reports. Never get surprised by a bill again.
+
+### 5. Prompt & Knowledge Layer
+**System Prompt Leaks** as a living research dataset for better agent instructions, guardrails, and behavior libraries.
+
+---
+
+## Architecture that actually ships
+
+### Executor Gateway (kortix-executor)
+Agents never see raw API keys. They call a single MCP server:
+
+| Tool | Purpose |
+|------|---------|
+| `connectors` | List every integration |
 | `discover` | Intent search ("create a charge", "send slack message") |
-| `describe` | Full JSON schema + risk level before you call anything |
-| `call` | Execute with the gateway-injected credential |
+| `describe` | Full JSON schema + risk level |
+| `call` | Execute with server-side credential injection |
 
-The gateway resolves `STRIPE_API_KEY`, `GROQ_API_KEY`, etc. from the Machine dashboard secrets. The agent only sees the result.
+### Memory Brain (`.kortix/memory/`)
+Every project has a living knowledge base curated by the `memory-reflector` agent. Durable facts only. Human-reviewed via Change Requests.
 
-### 2. Restricted Stripe Key (never in git)
+### Change Requests — the only way to land work
+No agent merges its own code. Every memory edit, connector addition, or workflow change goes through human review.
 
-You create a **restricted key** in Stripe with only the scopes you need:
-
-- `charges.create`
-- `customers.create`
-- `payment_intents.create`
-- `checkout.sessions.create`
-
-Nothing else. No refunds, no payouts, no account admin. The key name in the platform is always `STRIPE_API_KEY`.
-
-You paste the actual value once in the Machine dashboard → Connectors. That's it.
-
-### 3. Agent Permission Model
-
-Every agent declares exactly what it can do in its frontmatter:
-
-```yaml
-permission:
-  edit: allow
-  write: allow
-  bash:
-    "git *": allow
-    "kortix cr *": allow
-    "*": ask
-  mcp:
-    "kortix-executor": allow
-```
-
-The `mcp: "kortix-executor": allow` line is the on-ramp to every external API. No raw `curl`, no bearer tokens in prompts, no accidental key leaks.
-
-### 4. The Memory Brain (`.kortix/memory/`)
-
-Every project has a living knowledge base that agents curate. The `memory-reflector` agent:
-
-- Runs on a cron (default daily at 03:00 UTC)
-- Surveys git history, merged CRs, recent sessions
-- Uses a human-editable rubric to decide what is durable and team-relevant
-- Writes via the `memory` tool only (not generic file tools)
-- Opens a single `memory: …` change request for human review
-- Exits silently on days when nothing is worth remembering
-
-This is how Epic Tech AI keeps context across thousands of sessions without hallucinating old state.
-
-### 5. Change Requests — the only way to land work
-
-No agent ever merges its own code. Every memory edit, every code change, every connector addition goes through the CR flow:
-
-```sh
-git add .
-git commit -m "memory: add Stripe connector pattern"
-git push origin HEAD
-kortix cr open --title "memory: add Stripe connector pattern" --description "..."
-```
-
-Humans review. Humans merge. Agents stay in their lane.
+### Permission Model
+Agents declare exactly what they can do. The `mcp: "kortix-executor": allow` line is the on-ramp to every external tool — no raw `curl`, no bearer tokens in prompts.
 
 ---
 
 ## Quick start (secure by default)
 
-1. **Fork / clone** this repo as `epic-tech-ai`
-2. **Add secrets in the Machine dashboard**:
-   - `STRIPE_API_KEY` (your restricted Stripe key)
-   - `GROQ_API_KEY` (or any model provider key)
-3. **Declare connectors** in `kortix.toml` (already done for Stripe)
-4. **Grant agents the executor permission** (see `.kortix/opencode/agents/PERMISSION-PATTERNS.md`)
-5. **Enable the memory-reflector trigger** when you have enough activity
-6. **Ship** — every agent call is audited, every CR is reviewable, every key stays secret
-
----
-
-## Pricing & Profit (human-controlled)
-
-Epic Tech AI does not let agents autonomously decide to charge customers. You define pricing tiers, landing pages, and Stripe Checkout flows. The agent can:
-
-- Create a Checkout session via the executor
-- Read recent charges for reporting
-- Update customer records
-
-A human (or a narrowly-scoped, explicitly-approved agent workflow) still controls the "charge user $X" moment. This keeps you compliant and profitable without rogue agents.
-
----
-
-## Rebranding note
-
-All original "Smoke" / "Jarvis" references have been replaced. Current identity:
-
-- **Epic Tech AI**
-- Contact: epictechai@gmail.com
-- X: @EpicTechAI
-
-Future connectors, agents, and docs should carry this branding.
-
----
-
-## Files you care about
-
-| Path | Purpose |
-|------|---------|
-| `kortix.toml` | Project manifest, triggers, connectors, secrets names |
-| `.kortix/opencode/agents/` | All agent definitions + `PERMISSION-PATTERNS.md` |
-| `.kortix/opencode/skills/kortix-memory/` | Rubric + `memory` tool implementation |
-| `.kortix/opencode/skills/kortix-executor/` | The four MCP tools and connector discovery |
-| `.kortix/memory/` | The living project brain (edit via CR only) |
-| `README.md` | This file — update whenever architecture changes |
+1. Clone this repo
+2. Add secrets in the Machine dashboard (`STRIPE_API_KEY`, model keys, etc.)
+3. Grant agents the executor permission
+4. Enable the memory-reflector trigger
+5. Run locally or self-host with Docker
+6. Ship — every action is audited, every key stays secret
 
 ---
 
 ## Security posture (non-negotiable)
 
-- No API keys in git, prompts, agent memory, or environment files
-- Agents only reach the outside world through the Executor Gateway
-- Every connector uses the narrowest possible auth scope
-- Risky operations (`write` / `destructive`) are declared in tool metadata
+- No API keys in git, prompts, or agent memory
+- Everything external goes through the Executor Gateway
+- Narrowest possible auth scopes on every connector
 - Memory edits require human review via CR
-- All calls are logged and attributable
+- All calls logged and attributable
 
-This is how Epic Tech AI ships a legitimate, auditable, revenue-generating platform without ever handing an agent a live key.
+This is how you run autonomous agents that are powerful **and** safe.
 
 ---
 
-**Epic Tech AI — autonomous when it should be, secure when it must be, profitable by design.**
+## Philosophy
+
+> I don't chase trends. I chase leverage.
+
+The best tools disappear. The best platforms give you ownership.
+
+Epic Agent Fabric is built for people who want:
+- Local-first by default
+- Agent-native everything
+- Token-economical visibility and control
+- A stack they actually own
+
+No more renting your creativity. No more surprise bills. No more vendor lock-in.
+
+---
+
+## Files that matter
+
+| Path | Purpose |
+|------|---------|
+| `kortix.toml` | Manifest, triggers, connectors |
+| `.kortix/opencode/agents/` | Agent definitions + permissions |
+| `.kortix/opencode/skills/kortix-executor/` | The four MCP tools |
+| `.kortix/opencode/skills/kortix-memory/` | Memory rubric & tool |
+| `.kortix/memory/` | The living project brain |
+| `README.md` | This file |
+
+---
+
+**Epic Agent Fabric — local when it matters, autonomous when it should be, owned by design.**
 
 Contact: epictechai@gmail.com · x.com/@EpicTechAI
-
----
-*Repository originally forked from the Machine platform. All branding, security patterns, and connector architecture updated for Epic Tech AI production use.*

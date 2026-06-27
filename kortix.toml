@@ -1,8 +1,8 @@
 kortix_version = 1
 
 [project]
-name = "Smoke"
-description = ""
+name = "Epic Agent Fabric"
+description = "Local-first, token-native operating system for autonomous agents. Media Fabric, Agent OS, Intelligence Fabric, TokenOS, Prompt Layer."
 
 [runtime]
 root = ".opencode"

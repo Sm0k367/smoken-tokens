@@ -1,6 +1,6 @@
-# Project Memory
+# Epic Agent Fabric — Project Memory
 
-The **project brain** for `Smoke` — durable, team-shared notes
+The **project brain** for `Epic Agent Fabric` — durable, team-shared notes
 this project keeps about itself (purpose, integrations, conventions,
 decisions, gotchas). It lives in git and is curated through change
 requests.
