@@ -1,8 +1,8 @@
-# Epic Agent Fabric - Full Production Stack
-# This version includes Core + Media/Voice + Automation + Memory
+# Epic Agent Fabric - Lightweight Production Stack
+# This version is optimized for first-time users and faster downloads.
 
 services:
-  # === CORE ===
+  # === CORE SERVICES ===
   redis:
     image: redis:7-alpine
     ports:
@@ -37,26 +37,6 @@ services:
       - redis
     restart: unless-stopped
 
-  # === MEDIA & VOICE ===
-  whisper:
-    image: onerahmet/openai-whisper-asr-webservice:latest
-    ports:
-      - "9000:9000"
-    environment:
-      - ASR_MODEL=base
-    restart: unless-stopped
-
-  piper:
-    image: lscr.io/linuxserver/piper:latest
-    ports:
-      - "5003:5003"
-    environment:
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - ./volume/piper:/config
-    restart: unless-stopped
-
   # === AUTOMATION ===
   n8n:
     image: n8nio/n8n:latest
@@ -79,17 +59,7 @@ services:
       - chroma_data:/chroma/chroma
     restart: unless-stopped
 
-  # === LOCAL LLM (for agents + coding) ===
-  ollama:
-    image: ollama/ollama:latest
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-    restart: unless-stopped
-
 volumes:
   redis_data:
   n8n_data:
   chroma_data:
-  ollama_data:
