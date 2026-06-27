@@ -6,34 +6,91 @@
   <title>Epic Agent Fabric</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: 'Inter', system_ui, sans-serif; background: #050505; color: #ededed; }
-    .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; letter-spacing: -0.05em; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
     
-    .service-card { transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1); }
-    .service-card:hover { border-color: #00f5ff; transform: translateY(-6px); }
+    body {
+      font-family: 'Inter', system_ui, sans-serif;
+      background: #050505;
+      color: #ededed;
+    }
     
-    .btn { transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1); }
-    .btn:hover { transform: translateY(-2px); }
-    
-    .section-header { font-size: 4.2rem; line-height: 1.0; letter-spacing: -0.06em; }
-    
-    .status-dot { transition: all 0.2s ease; }
-    
-    .tool-pill { transition: all 0.15s ease; }
-    .tool-pill:hover { background: #1a1a1a; color: #00f5ff; }
-    
-    .working { border-color: #22c55e; }
-    .working .status-dot { background: #22c55e; }
+    .font-display {
+      font-family: 'Space Grotesk', 'Inter', sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.06em;
+    }
+
+    .nav {
+      border-bottom: 1px solid #111;
+    }
+
+    .service-card {
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .service-card:hover {
+      border-color: #00f5ff;
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+    }
+
+    .btn {
+      transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .section-header {
+      font-size: 4.8rem;
+      line-height: 0.94;
+      letter-spacing: -0.08em;
+    }
+
+    .status-dot {
+      transition: all 0.3s ease;
+    }
+
+    .tool-pill {
+      transition: all 0.2s ease;
+    }
+    .tool-pill:hover {
+      background: #1a1a1a;
+      color: #00f5ff;
+      transform: translateY(-1px);
+    }
+
+    .working {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 1px #22c55e20;
+    }
+    .working .status-dot {
+      background: #22c55e;
+    }
+
+    .hero-grid {
+      background-image: 
+        linear-gradient(#00f5ff06 1px, transparent 1px),
+        linear-gradient(90deg, #00f5ff06 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+
+    .glow-cyan {
+      box-shadow: 0 0 80px -20px #00f5ff50;
+    }
+
+    .stat-number {
+      font-variant-numeric: tabular-nums;
+    }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-xl border-b border-white/10">
+  <nav class="nav sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-2xl">
     <div class="max-w-screen-2xl mx-auto px-8 flex items-center justify-between h-[76px]">
       <div class="flex items-center gap-x-3">
-        <div class="w-9 h-9 bg-[#00f5ff] rounded-3xl flex items-center justify-center">
-          <span class="text-black font-bold text-[26px] tracking-tighter">E</span>
+        <div class="w-10 h-10 bg-[#00f5ff] rounded-3xl flex items-center justify-center glow-cyan">
+          <span class="text-black font-bold text-[28px] tracking-tighter">E</span>
         </div>
         <div class="font-semibold text-2xl tracking-[-1.5px]">Epic Agent Fabric</div>
       </div>
@@ -47,30 +104,44 @@
 
       <div class="flex items-center gap-x-3">
         <button onclick="showInstallModal()" class="px-6 py-2.5 text-sm border border-white/20 hover:bg-white/5 rounded-3xl transition-all">Install</button>
-        <button onclick="showAdminPanel()" class="px-6 py-2.5 bg-[#00f5ff] text-black text-sm font-semibold rounded-3xl hover:bg-[#67faff] transition-all">Dashboard</button>
+        <button onclick="showAdminPanel()" class="px-7 py-2.5 bg-[#00f5ff] text-black text-sm font-semibold rounded-3xl hover:bg-[#67faff] transition-all">Dashboard</button>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <div class="max-w-screen-2xl mx-auto px-8 pt-24 pb-24">
-    <div class="max-w-4xl">
-      <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/5 text-xs tracking-[3.5px] text-white/60 mb-8">
+  <div class="max-w-screen-2xl mx-auto px-8 pt-16 pb-20 hero-grid">
+    <div class="max-w-5xl">
+      <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/5 text-xs tracking-[4px] text-white/60 mb-8">
         LOCAL • TOKEN-NATIVE • PRODUCTION
       </div>
       
-      <h1 class="text-[92px] font-semibold tracking-[-7.2px] leading-[0.96]">
-        The agent<br>OS you<br>actually own.
+      <h1 class="text-[104px] font-semibold tracking-[-8px] leading-[0.92]">
+        The agent<br>OS that<br>actually works.
       </h1>
       
-      <p class="mt-8 text-2xl text-white/60 max-w-md">
-        Run powerful autonomous agents locally.<br>
-        No subscriptions. No vendor lock-in.
+      <p class="mt-8 text-2xl text-white/60 max-w-lg">
+        5 pillars. 12 tools. Zero vendor lock-in.
       </p>
 
-      <div class="mt-14 flex items-center gap-x-4">
-        <button onclick="showInstallModal()" class="btn px-10 py-4 bg-white text-black font-semibold rounded-3xl text-lg">Install locally</button>
+      <div class="mt-12 flex items-center gap-x-4">
+        <button onclick="showInstallModal()" class="btn px-10 py-4 bg-[#00f5ff] text-black font-semibold rounded-3xl text-lg">Install locally</button>
         <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank" class="btn px-9 py-4 border border-white/20 hover:bg-white/5 rounded-3xl text-lg flex items-center gap-x-2">View source</a>
+      </div>
+
+      <div class="mt-16 grid grid-cols-3 gap-8 max-w-lg">
+        <div>
+          <div class="text-4xl font-semibold tracking-tighter">5</div>
+          <div class="text-sm text-white/50">Pillars</div>
+        </div>
+        <div>
+          <div class="text-4xl font-semibold tracking-tighter">12</div>
+          <div class="text-sm text-white/50">Tools</div>
+        </div>
+        <div>
+          <div class="text-4xl font-semibold tracking-tighter">0</div>
+          <div class="text-sm text-white/50">Subscriptions</div>
+        </div>
       </div>
     </div>
   </div>
@@ -99,7 +170,6 @@
     </div>
 
     <div class="space-y-4">
-      <!-- Media Fabric -->
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
         <div class="flex items-center justify-between mb-6">
           <div><span class="text-[#00f5ff] text-sm">01</span> <span class="font-semibold text-xl">Media Fabric</span></div>
@@ -114,7 +184,6 @@
         </div>
       </div>
 
-      <!-- Agent OS -->
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
         <div class="flex items-center justify-between mb-6">
           <div><span class="text-[#00f5ff] text-sm">02</span> <span class="font-semibold text-xl">Agent OS Layer</span></div>
@@ -128,7 +197,6 @@
         </div>
       </div>
 
-      <!-- Intelligence -->
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
         <div class="flex items-center justify-between mb-6">
           <div><span class="text-[#00f5ff] text-sm">03</span> <span class="font-semibold text-xl">Intelligence Fabric</span></div>
@@ -141,7 +209,6 @@
         </div>
       </div>
 
-      <!-- TokenOS -->
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
         <div class="flex items-center justify-between mb-6">
           <div><span class="text-[#00f5ff] text-sm">04</span> <span class="font-semibold text-xl">TokenOS</span></div>
@@ -154,7 +221,6 @@
         </div>
       </div>
 
-      <!-- Prompt Layer -->
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
         <div class="flex items-center justify-between mb-6">
           <div><span class="text-[#00f5ff] text-sm">05</span> <span class="font-semibold text-xl">Prompt Layer</span></div>
@@ -209,7 +275,7 @@
         </div>
       </div>
     </div>
-    <p class="text-xs text-white/40 mt-6">Green border = Working • White border = Coming soon</p>
+    <p class="text-xs text-white/40 mt-6">Green border = Working live • White border = Coming soon</p>
   </div>
 
   <!-- FOOTER -->
@@ -305,7 +371,7 @@
       }
     });
 
-    console.log('%c[Epic Agent Fabric] Perfect landing page loaded.', 'color:#444');
+    console.log('%c[Epic Agent Fabric] Bold mind-blowing landing page loaded.', 'color:#444');
   </script>
 </body>
 </html>
