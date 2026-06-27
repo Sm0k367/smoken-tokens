@@ -1,9 +1,8 @@
-# Epic Agent Fabric - Beginner Friendly Docker Compose
-# This is a simplified version that works for first-time Docker users.
-# Only services with real, publicly available images are enabled.
+# Epic Agent Fabric - Working Core Services
+# This version is designed to work for first-time Docker users.
 
 services:
-  # === Core Service: Redis (used by TokenOS) ===
+  # Redis - Database for TokenOS
   redis:
     image: redis:7-alpine
     ports:
@@ -12,24 +11,23 @@ services:
       - redis_data:/data
     restart: unless-stopped
 
-  # === Future Services (commented out until images are ready) ===
-  # executor-gateway:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.executor
-  #   ports:
-  #     - "8787:8787"
-  #   restart: unless-stopped
+  # Executor Gateway - The secure bridge for agents
+  executor-gateway:
+    build:
+      context: ./integrations/executor-gateway
+    ports:
+      - "8787:8787"
+    restart: unless-stopped
 
-  # tokenos:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.tokenos
-  #   ports:
-  #     - "7777:7777"
-  #   depends_on:
-  #     - redis
-  #   restart: unless-stopped
+  # TokenOS - Usage tracking and economics
+  tokenos:
+    build:
+      context: ./integrations/tokenos
+    ports:
+      - "7777:7777"
+    depends_on:
+      - redis
+    restart: unless-stopped
 
 volumes:
   redis_data:
