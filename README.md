@@ -9,19 +9,15 @@ Run powerful workflows on your hardware. Plug agents into your own tools. Never 
 ## Quick Start (Windows)
 
 ```powershell
-# 1. Clone the repo
-git clone https://github.com/Sm0k367/smoken-tokens.git "D:\Epic Fabric"
-
-# 2. Go to the folder
+# 1. Go to your Epic Fabric folder
 cd "D:\Epic Fabric"
 
-# 3. Copy your .env file (with API keys)
-copy "C:\Users\smoke recovery\smoken-tokens\.env" .
+# 2. Make sure Docker Desktop is running
 
-# 4. Start the services
+# 3. Start the services
 docker compose up -d
 
-# 5. Check status
+# 4. Check status
 docker compose ps
 ```
 
@@ -29,19 +25,19 @@ docker compose ps
 
 ## Services
 
-| Service            | Port   | Description                     | Status     |
-|--------------------|--------|----------------------------------|------------|
-| Executor Gateway   | 8787   | Secure agent bridge             | Working    |
-| TokenOS            | 7777   | Usage tracking & economics      | Working    |
-| Redis              | 6379   | Database                        | Working    |
-| n8n                | 5678   | Automation (like Zapier)        | Working    |
-| Chroma             | 8000   | Vector memory for agents        | Working    |
+| Service            | Port   | Description                          | Status  |
+|--------------------|--------|--------------------------------------|---------|
+| Executor Gateway   | 8787   | Secure agent bridge                  | Working |
+| TokenOS            | 7777   | Usage tracking & economics           | Working |
+| Redis              | 6379   | Database                             | Working |
+| n8n                | 5678   | Automation (self-hosted Zapier)      | Working |
+| Chroma             | 8000   | Vector memory for agents             | Working |
 
 ---
 
 ## Landing Page
 
-Open `docs/index.html` in your browser to access the full control panel.
+Open `docs/index.html` in your browser for the full control panel.
 
 ---
 
