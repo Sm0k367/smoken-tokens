@@ -1,8 +1,7 @@
-# Epic Agent Fabric - Full Stack (Beginner Friendly)
-# This file includes all 5 pillars. Only services with real images are enabled.
+# Epic Agent Fabric - Core Only (Production Ready)
 
 services:
-  # === CORE (Always Working) ===
+  # Redis - Database
   redis:
     image: redis:7-alpine
     ports:
@@ -11,6 +10,7 @@ services:
       - redis_data:/data
     restart: unless-stopped
 
+  # Executor Gateway - Secure agent bridge
   executor-gateway:
     build:
       context: ./integrations/executor-gateway
@@ -23,6 +23,7 @@ services:
       - ZAPIER_API_KEY=${ZAPIER_API_KEY:-}
     restart: unless-stopped
 
+  # TokenOS - Usage & Economics
   tokenos:
     build:
       context: ./integrations/tokenos
@@ -36,36 +37,6 @@ services:
     depends_on:
       - redis
     restart: unless-stopped
-
-  # === MEDIA FABRIC ===
-  voicebox:
-    image: ghcr.io/voicebox-ai/voicebox:latest
-    ports:
-      - "5001:5001"
-    restart: unless-stopped
-
-  fluidvoice:
-    image: ghcr.io/fluidvoice/fluidvoice:latest
-    ports:
-      - "5002:5002"
-    restart: unless-stopped
-
-  penpot:
-    image: penpotapp/penpot:latest
-    ports:
-      - "9001:80"
-    restart: unless-stopped
-
-  # === AGENT OS LAYER ===
-  # Note: Codebase Memory MCP, Zapier MCP, and Agent Reach
-  # are currently integrated via the Executor Gateway
-
-  # === INTELLIGENCE FABRIC ===
-  # Note: TimesFM, Daily Stock Analysis, World Monitor
-  # are currently research/tools - not yet containerized
-
-  # === PROMPT LAYER ===
-  # Note: System Prompt Leaks is research-only for now
 
 volumes:
   redis_data:
