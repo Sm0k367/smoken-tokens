@@ -8,22 +8,38 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
     
+    :root {
+      --bg: #050505;
+      --card: #0a0a0a;
+      --accent: #00f5ff;
+      --accent-dark: #00d4e6;
+      --text: #ededed;
+      --muted: #888;
+    }
+
     body {
       font-family: 'Inter', system_ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
+    
     .font-display {
       font-family: 'Space Grotesk', 'Inter', sans-serif;
       font-weight: 600;
       letter-spacing: -0.05em;
     }
 
+    .nav {
+      border-bottom: 1px solid #111;
+    }
+
     .service-card {
       transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
     }
     .service-card:hover {
-      border-color: #444;
+      border-color: var(--accent);
       transform: translateY(-6px);
-      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2);
     }
 
     .btn {
@@ -31,6 +47,14 @@
     }
     .btn:hover {
       transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover {
+      background: var(--accent-dark);
     }
 
     .section-header {
@@ -48,14 +72,18 @@
     }
     .tool-pill:hover {
       background: #1a1a1a;
-      color: #00f5ff;
+      color: var(--accent);
+    }
+
+    .accent {
+      color: var(--accent);
     }
   </style>
 </head>
-<body class="bg-[#050505] text-white">
+<body>
 
   <!-- NAV -->
-  <nav class="sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-xl border-b border-white/10">
+  <nav class="nav sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-xl">
     <div class="max-w-screen-2xl mx-auto px-8 flex items-center justify-between h-[76px]">
       <div class="flex items-center gap-x-3">
         <div class="w-9 h-9 bg-[#00f5ff] rounded-3xl flex items-center justify-center">
@@ -95,7 +123,7 @@
       </p>
 
       <div class="mt-14 flex items-center gap-x-4">
-        <button onclick="showInstallModal()" class="btn px-10 py-4 bg-white text-black font-semibold rounded-3xl text-lg">Install locally</button>
+        <button onclick="showInstallModal()" class="btn btn-primary px-10 py-4 font-semibold rounded-3xl text-lg">Install locally</button>
         <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank" class="btn px-9 py-4 border border-white/20 hover:bg-white/5 rounded-3xl text-lg flex items-center gap-x-2">View source</a>
       </div>
     </div>
@@ -117,7 +145,7 @@
     </div>
   </div>
 
-  <!-- THE FULL STACK - 12 TOOLS -->
+  <!-- THE FULL STACK -->
   <div id="tools" class="max-w-screen-2xl mx-auto px-8 py-20 border-t border-white/10">
     <div class="max-w-2xl mb-12">
       <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">THE FULL STACK</div>
@@ -125,7 +153,6 @@
     </div>
 
     <div class="space-y-4">
-      <!-- Media Fabric -->
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
         <div class="flex items-center justify-between mb-6">
           <div><span class="text-[#00f5ff] text-sm">01</span> <span class="font-semibold text-xl">Media Fabric</span></div>
@@ -140,7 +167,6 @@
         </div>
       </div>
 
-      <!-- Agent OS -->
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
         <div class="flex items-center justify-between mb-6">
           <div><span class="text-[#00f5ff] text-sm">02</span> <span class="font-semibold text-xl">Agent OS Layer</span></div>
@@ -154,7 +180,6 @@
         </div>
       </div>
 
-      <!-- Intelligence -->
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
         <div class="flex items-center justify-between mb-6">
           <div><span class="text-[#00f5ff] text-sm">03</span> <span class="font-semibold text-xl">Intelligence Fabric</span></div>
@@ -167,7 +192,6 @@
         </div>
       </div>
 
-      <!-- TokenOS -->
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
         <div class="flex items-center justify-between mb-6">
           <div><span class="text-[#00f5ff] text-sm">04</span> <span class="font-semibold text-xl">TokenOS</span></div>
@@ -180,7 +204,6 @@
         </div>
       </div>
 
-      <!-- Prompt Layer -->
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
         <div class="flex items-center justify-between mb-6">
           <div><span class="text-[#00f5ff] text-sm">05</span> <span class="font-semibold text-xl">Prompt Layer</span></div>
@@ -210,14 +233,14 @@
         <div class="font-semibold text-xl tracking-tight">Executor Gateway</div>
         <div class="flex items-center justify-between mt-16">
           <div class="text-sm text-white/40">localhost:8787</div>
-          <div class="status-dot w-2.5 h-2.5 rounded-full bg-white/20"></div>
+          <div class="status-dot w-2.5 h-2.5 rounded-full bg-[#00f5ff]"></div>
         </div>
       </div>
       <div onclick="openService(7777, 'TokenOS', this)" class="service-card cursor-pointer bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl">
         <div class="font-semibold text-xl tracking-tight">TokenOS</div>
         <div class="flex items-center justify-between mt-16">
           <div class="text-sm text-white/40">localhost:7777</div>
-          <div class="status-dot w-2.5 h-2.5 rounded-full bg-white/20"></div>
+          <div class="status-dot w-2.5 h-2.5 rounded-full bg-[#00f5ff]"></div>
         </div>
       </div>
       <div onclick="openService(9001, 'Penpot', this)" class="service-card cursor-pointer bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl">
@@ -283,7 +306,7 @@
     }
 
     function showComingSoon(toolName) {
-      showToast(`${toolName} is coming soon. Currently in development.`, 'info');
+      showToast(`${toolName} is coming soon.`, 'info');
     }
 
     async function checkService(port) {
@@ -303,7 +326,7 @@
       for (let i = 0; i < cards.length; i++) {
         const dot = cards[i].querySelector('.status-dot');
         const running = await checkService(ports[i]);
-        dot.className = `status-dot w-2.5 h-2.5 rounded-full ${running ? 'bg-emerald-400' : 'bg-red-500'}`;
+        dot.className = `status-dot w-2.5 h-2.5 rounded-full ${running ? 'bg-[#00f5ff]' : 'bg-red-500'}`;
       }
       showToast('Status check complete', 'success');
     }
@@ -324,7 +347,7 @@
       }
     });
 
-    console.log('%c[Epic Agent Fabric] 100% working landing page loaded.', 'color:#444');
+    console.log('%c[Epic Agent Fabric] Custom color scheme landing page loaded.', 'color:#444');
   </script>
 </body>
 </html>
