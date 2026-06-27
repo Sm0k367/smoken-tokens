@@ -17,10 +17,6 @@
       letter-spacing: -0.05em;
     }
 
-    .nav {
-      border-bottom: 1px solid #111;
-    }
-
     .service-card {
       transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
     }
@@ -47,7 +43,11 @@
       transition: all 0.2s ease;
     }
 
-    .accent {
+    .tool-pill {
+      transition: all 0.15s ease;
+    }
+    .tool-pill:hover {
+      background: #1a1a1a;
       color: #00f5ff;
     }
   </style>
@@ -55,7 +55,7 @@
 <body class="bg-[#050505] text-white">
 
   <!-- NAV -->
-  <nav class="nav sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-xl">
+  <nav class="sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-xl border-b border-white/10">
     <div class="max-w-screen-2xl mx-auto px-8 flex items-center justify-between h-[76px]">
       <div class="flex items-center gap-x-3">
         <div class="w-9 h-9 bg-[#00f5ff] rounded-3xl flex items-center justify-center">
@@ -66,19 +66,14 @@
 
       <div class="flex items-center gap-x-10 text-sm">
         <a href="#platform" class="text-white/60 hover:text-white transition-colors">Platform</a>
+        <a href="#tools" class="text-white/60 hover:text-white transition-colors">Tools</a>
         <a href="#services" class="text-white/60 hover:text-white transition-colors">Services</a>
         <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank" class="text-white/60 hover:text-white transition-colors">GitHub</a>
       </div>
 
       <div class="flex items-center gap-x-3">
-        <button onclick="showInstallModal()" 
-                class="px-6 py-2.5 text-sm border border-white/20 hover:bg-white/5 rounded-3xl transition-all">
-          Install
-        </button>
-        <button onclick="showAdminPanel()" 
-                class="px-6 py-2.5 bg-[#00f5ff] text-black text-sm font-semibold rounded-3xl hover:bg-[#67faff] transition-all">
-          Dashboard
-        </button>
+        <button onclick="showInstallModal()" class="px-6 py-2.5 text-sm border border-white/20 hover:bg-white/5 rounded-3xl transition-all">Install</button>
+        <button onclick="showAdminPanel()" class="px-6 py-2.5 bg-[#00f5ff] text-black text-sm font-semibold rounded-3xl hover:bg-[#67faff] transition-all">Dashboard</button>
       </div>
     </div>
   </nav>
@@ -100,14 +95,8 @@
       </p>
 
       <div class="mt-14 flex items-center gap-x-4">
-        <button onclick="showInstallModal()" 
-                class="btn px-10 py-4 bg-white text-black font-semibold rounded-3xl text-lg">
-          Install locally
-        </button>
-        <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank"
-           class="btn px-9 py-4 border border-white/20 hover:bg-white/5 rounded-3xl text-lg flex items-center gap-x-2">
-          View source
-        </a>
+        <button onclick="showInstallModal()" class="btn px-10 py-4 bg-white text-black font-semibold rounded-3xl text-lg">Install locally</button>
+        <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank" class="btn px-9 py-4 border border-white/20 hover:bg-white/5 rounded-3xl text-lg flex items-center gap-x-2">View source</a>
       </div>
     </div>
   </div>
@@ -120,30 +109,88 @@
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
-        <div class="text-[#00f5ff] text-sm mb-5">01</div>
-        <div class="font-semibold text-2xl tracking-tight">Media Fabric</div>
-        <div class="text-sm text-white/50 mt-8">Open Montage • OpenCut • Voicebox • FluidVoice • Penpot</div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">01</div><div class="font-semibold text-2xl tracking-tight">Media Fabric</div><div class="text-sm text-white/50 mt-8">Open Montage • OpenCut • Voicebox • FluidVoice • Penpot</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">02</div><div class="font-semibold text-2xl tracking-tight">Agent OS Layer</div><div class="text-sm text-white/50 mt-8">Codebase Memory • Zapier MCP • Agent Reach • Executor</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">03</div><div class="font-semibold text-2xl tracking-tight">Intelligence Fabric</div><div class="text-sm text-white/50 mt-8">TimesFM • Daily Stock Analysis • World Monitor</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">04</div><div class="font-semibold text-2xl tracking-tight">TokenOS</div><div class="text-sm text-white/50 mt-8">Usage metering • Burn forecasting • Budget guardrails</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">05</div><div class="font-semibold text-2xl tracking-tight">Prompt Layer</div><div class="text-sm text-white/50 mt-8">System prompt research • Guardrails • Templates</div></div>
+    </div>
+  </div>
+
+  <!-- THE FULL STACK - 12 TOOLS -->
+  <div id="tools" class="max-w-screen-2xl mx-auto px-8 py-20 border-t border-white/10">
+    <div class="max-w-2xl mb-12">
+      <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">THE FULL STACK</div>
+      <h2 class="section-header font-semibold tracking-tighter">12 tools.<br>Fully integrated.</h2>
+    </div>
+
+    <div class="space-y-4">
+      <!-- Media Fabric -->
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
+        <div class="flex items-center justify-between mb-6">
+          <div><span class="text-[#00f5ff] text-sm">01</span> <span class="font-semibold text-xl">Media Fabric</span></div>
+          <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">5 tools</div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(5001, 'Voicebox')">Voicebox</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(5002, 'FluidVoice')">FluidVoice</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('media', 'open-montage')">Open Montage</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('media', 'opencut')">OpenCut</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(9001, 'Penpot')">Penpot</div>
+        </div>
       </div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
-        <div class="text-[#00f5ff] text-sm mb-5">02</div>
-        <div class="font-semibold text-2xl tracking-tight">Agent OS Layer</div>
-        <div class="text-sm text-white/50 mt-8">Codebase Memory • Zapier MCP • Agent Reach • Executor</div>
+
+      <!-- Agent OS -->
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
+        <div class="flex items-center justify-between mb-6">
+          <div><span class="text-[#00f5ff] text-sm">02</span> <span class="font-semibold text-xl">Agent OS Layer</span></div>
+          <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">4 tools</div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(8787, 'Executor Gateway')">kortix-executor</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('agent-os', 'codebase-memory-mcp')">Codebase Memory MCP</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('agent-os', 'zapier-mcp')">Zapier MCP</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('agent-os', 'agent-reach')">Agent Reach</div>
+        </div>
       </div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
-        <div class="text-[#00f5ff] text-sm mb-5">03</div>
-        <div class="font-semibold text-2xl tracking-tight">Intelligence Fabric</div>
-        <div class="text-sm text-white/50 mt-8">TimesFM • Daily Stock Analysis • World Monitor</div>
+
+      <!-- Intelligence -->
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
+        <div class="flex items-center justify-between mb-6">
+          <div><span class="text-[#00f5ff] text-sm">03</span> <span class="font-semibold text-xl">Intelligence Fabric</span></div>
+          <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">3 tools</div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('intelligence', 'timesfm')">TimesFM</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('intelligence', 'daily-stock-analysis')">Daily Stock Analysis</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('intelligence', 'world-monitor')">World Monitor</div>
+        </div>
       </div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
-        <div class="text-[#00f5ff] text-sm mb-5">04</div>
-        <div class="font-semibold text-2xl tracking-tight">TokenOS</div>
-        <div class="text-sm text-white/50 mt-8">Usage metering • Burn forecasting • Budget guardrails</div>
+
+      <!-- TokenOS -->
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
+        <div class="flex items-center justify-between mb-6">
+          <div><span class="text-[#00f5ff] text-sm">04</span> <span class="font-semibold text-xl">TokenOS</span></div>
+          <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">Core</div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Burn Forecasting</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Budget Guardrails</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Token-native Billing</div>
+        </div>
       </div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
-        <div class="text-[#00f5ff] text-sm mb-5">05</div>
-        <div class="font-semibold text-2xl tracking-tight">Prompt Layer</div>
-        <div class="text-sm text-white/50 mt-8">System prompt research • Guardrails • Templates</div>
+
+      <!-- Prompt Layer -->
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
+        <div class="flex items-center justify-between mb-6">
+          <div><span class="text-[#00f5ff] text-sm">05</span> <span class="font-semibold text-xl">Prompt Layer</span></div>
+          <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">Research</div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('prompt-layer', 'system-prompt-leaks')">System Prompt Leaks</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('prompt-layer', 'system-prompt-leaks')">Guardrails Library</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('prompt-layer', 'system-prompt-leaks')">Instruction Templates</div>
+        </div>
       </div>
     </div>
   </div>
@@ -155,10 +202,7 @@
         <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">CONTROL PANEL</div>
         <h3 class="text-5xl font-semibold tracking-tighter">Live services</h3>
       </div>
-      <button onclick="checkAllServices()" 
-              class="px-7 py-3.5 border border-white/20 hover:bg-white/5 rounded-3xl text-sm transition-all flex items-center gap-x-2">
-        Check Status
-      </button>
+      <button onclick="checkAllServices()" class="px-7 py-3.5 border border-white/20 hover:bg-white/5 rounded-3xl text-sm transition-all flex items-center gap-x-2">Check Status</button>
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -206,7 +250,6 @@
         <div class="font-semibold text-2xl">Install Epic Agent Fabric</div>
         <button onclick="hideInstallModal()" class="text-3xl text-white/40 hover:text-white">×</button>
       </div>
-      
       <div class="space-y-4 text-sm">
         <div class="p-5 bg-black rounded-2xl"><div class="text-xs text-white/50 mb-1">WINDOWS</div><div class="font-mono text-emerald-400">.\scripts\setup.ps1</div></div>
         <div class="p-5 bg-black rounded-2xl"><div class="text-xs text-white/50 mb-1">MACOS / LINUX</div><div class="font-mono text-emerald-400">./scripts/setup.sh</div></div>
@@ -237,6 +280,33 @@
       } else {
         showToast(`Opening ${name}...`, 'success');
       }
+    }
+
+    function openDoc(pillar, tool) {
+      const base = "https://github.com/Sm0k367/smoken-tokens/tree/main/.kortix/opencode/skills/";
+      const urls = {
+        'media': {
+          'open-montage': base + 'media-fabric/open-montage.md',
+          'opencut': base + 'media-fabric/opencut.md'
+        },
+        'agent-os': {
+          'codebase-memory-mcp': base + 'agent-os/codebase-memory-mcp.md',
+          'zapier-mcp': base + 'agent-os/zapier-mcp.md',
+          'agent-reach': base + 'agent-os/agent-reach.md'
+        },
+        'intelligence': {
+          'timesfm': base + 'intelligence-fabric/timesfm.md',
+          'daily-stock-analysis': base + 'intelligence-fabric/daily-stock-analysis.md',
+          'world-monitor': base + 'intelligence-fabric/world-monitor.md'
+        },
+        'prompt-layer': {
+          'system-prompt-leaks': base + 'prompt-layer/system-prompt-leaks.md'
+        }
+      };
+      
+      const url = urls[pillar] && urls[pillar][tool] ? urls[pillar][tool] : "https://github.com/Sm0k367/smoken-tokens";
+      window.open(url, '_blank');
+      showToast('Opening documentation...', 'info');
     }
 
     async function checkService(port) {
@@ -277,7 +347,7 @@
       }
     });
 
-    console.log('%c[Epic Agent Fabric] Bold premium landing page loaded.', 'color:#444');
+    console.log('%c[Epic Agent Fabric] Full 12-tool stack with doc links loaded.', 'color:#444');
   </script>
 </body>
 </html>
