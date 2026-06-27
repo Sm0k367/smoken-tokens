@@ -1,0 +1,112 @@
+version: '3.8'
+
+services:
+  # === AGENT OS LAYER ===
+  executor-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.executor
+    ports:
+      - "8787:8787"
+    environment:
+      - NODE_ENV=production
+      - STRIPE_API_KEY=${STRIPE_API_KEY:-}
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    volumes:
+      - ./volume/executor:/data
+    restart: unless-stopped
+
+  zapier-mcp:
+    image: ghcr.io/zapier/mcp-server:latest
+    ports:
+      - "3001:3001"
+    environment:
+      - ZAPIER_API_KEY=${ZAPIER_API_KEY:-}
+    restart: unless-stopped
+
+  agent-reach:
+    build:
+      context: integrations/agent-reach
+    ports:
+      - "3002:3002"
+    restart: unless-stopped
+
+  # === MEDIA FABRIC ===
+  voicebox:
+    image: ghcr.io/voicebox-ai/voicebox:latest
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./volume/voice:/models
+    restart: unless-stopped
+
+  fluidvoice:
+    image: ghcr.io/fluidvoice/fluidvoice:latest
+    ports:
+      - "5002:5002"
+    restart: unless-stopped
+
+  opencut:
+    image: ghcr.io/opencut/opencut:latest
+    ports:
+      - "5003:5003"
+    volumes:
+      - ./volume/media:/workspace
+    restart: unless-stopped
+
+  penpot:
+    image: penpotapp/penpot:latest
+    ports:
+      - "9001:80"
+    volumes:
+      - penpot_data:/opt/data
+    restart: unless-stopped
+
+  # === INTELLIGENCE FABRIC ===
+  timesfm:
+    build:
+      context: integrations/timesfm
+    ports:
+      - "6001:6001"
+    restart: unless-stopped
+
+  world-monitor:
+    build:
+      context: integrations/world-monitor
+    ports:
+      - "6002:6002"
+    restart: unless-stopped
+
+  # === TOKENOS (Economic Layer) ===
+  tokenos:
+    build:
+      context: .
+      dockerfile: Dockerfile.tokenos
+    ports:
+      - "7777:7777"
+    environment:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  # === PROMPT LAYER ===
+  prompt-layer:
+    build:
+      context: integrations/prompt-layer
+    ports:
+      - "4001:4001"
+    restart: unless-stopped
+
+volumes:
+  penpot_data:
+  redis_data:
