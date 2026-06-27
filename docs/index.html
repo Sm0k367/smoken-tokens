@@ -134,8 +134,8 @@
         <div class="flex flex-wrap gap-2">
           <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(5001, 'Voicebox')">Voicebox</div>
           <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(5002, 'FluidVoice')">FluidVoice</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('media', 'open-montage')">Open Montage</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('media', 'opencut')">OpenCut</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Open Montage')">Open Montage</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('OpenCut')">OpenCut</div>
           <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(9001, 'Penpot')">Penpot</div>
         </div>
       </div>
@@ -148,9 +148,9 @@
         </div>
         <div class="flex flex-wrap gap-2">
           <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(8787, 'Executor Gateway')">kortix-executor</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('agent-os', 'codebase-memory-mcp')">Codebase Memory MCP</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('agent-os', 'zapier-mcp')">Zapier MCP</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('agent-os', 'agent-reach')">Agent Reach</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Codebase Memory MCP')">Codebase Memory MCP</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Zapier MCP')">Zapier MCP</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Agent Reach')">Agent Reach</div>
         </div>
       </div>
 
@@ -161,9 +161,9 @@
           <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">3 tools</div>
         </div>
         <div class="flex flex-wrap gap-2">
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('intelligence', 'timesfm')">TimesFM</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('intelligence', 'daily-stock-analysis')">Daily Stock Analysis</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('intelligence', 'world-monitor')">World Monitor</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('TimesFM')">TimesFM</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Daily Stock Analysis')">Daily Stock Analysis</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('World Monitor')">World Monitor</div>
         </div>
       </div>
 
@@ -187,9 +187,9 @@
           <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">Research</div>
         </div>
         <div class="flex flex-wrap gap-2">
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('prompt-layer', 'system-prompt-leaks')">System Prompt Leaks</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('prompt-layer', 'system-prompt-leaks')">Guardrails Library</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openDoc('prompt-layer', 'system-prompt-leaks')">Instruction Templates</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('System Prompt Leaks')">System Prompt Leaks</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Guardrails Library')">Guardrails Library</div>
+          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Instruction Templates')">Instruction Templates</div>
         </div>
       </div>
     </div>
@@ -282,31 +282,8 @@
       }
     }
 
-    function openDoc(pillar, tool) {
-      const base = "https://github.com/Sm0k367/smoken-tokens/tree/main/.kortix/opencode/skills/";
-      const urls = {
-        'media': {
-          'open-montage': base + 'media-fabric/open-montage.md',
-          'opencut': base + 'media-fabric/opencut.md'
-        },
-        'agent-os': {
-          'codebase-memory-mcp': base + 'agent-os/codebase-memory-mcp.md',
-          'zapier-mcp': base + 'agent-os/zapier-mcp.md',
-          'agent-reach': base + 'agent-os/agent-reach.md'
-        },
-        'intelligence': {
-          'timesfm': base + 'intelligence-fabric/timesfm.md',
-          'daily-stock-analysis': base + 'intelligence-fabric/daily-stock-analysis.md',
-          'world-monitor': base + 'intelligence-fabric/world-monitor.md'
-        },
-        'prompt-layer': {
-          'system-prompt-leaks': base + 'prompt-layer/system-prompt-leaks.md'
-        }
-      };
-      
-      const url = urls[pillar] && urls[pillar][tool] ? urls[pillar][tool] : "https://github.com/Sm0k367/smoken-tokens";
-      window.open(url, '_blank');
-      showToast('Opening documentation...', 'info');
+    function showComingSoon(toolName) {
+      showToast(`${toolName} is coming soon. Currently in development.`, 'info');
     }
 
     async function checkService(port) {
@@ -347,7 +324,7 @@
       }
     });
 
-    console.log('%c[Epic Agent Fabric] Full 12-tool stack with doc links loaded.', 'color:#444');
+    console.log('%c[Epic Agent Fabric] 100% working landing page loaded.', 'color:#444');
   </script>
 </body>
 </html>
