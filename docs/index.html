@@ -14,7 +14,7 @@
     .font-display {
       font-family: 'Space Grotesk', 'Inter', sans-serif;
       font-weight: 600;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.05em;
     }
 
     .nav {
@@ -25,30 +25,30 @@
       transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
     }
     .service-card:hover {
-      border-color: #333;
-      transform: translateY(-4px);
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+      border-color: #444;
+      transform: translateY(-6px);
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.2);
     }
 
     .btn {
       transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
     }
     .btn:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
     .section-header {
-      font-size: 3.8rem;
-      line-height: 1.05;
-      letter-spacing: -0.05em;
+      font-size: 4.2rem;
+      line-height: 1.0;
+      letter-spacing: -0.06em;
     }
 
     .status-dot {
       transition: all 0.2s ease;
     }
 
-    .premium-shadow {
-      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+    .accent {
+      color: #00f5ff;
     }
   </style>
 </head>
@@ -58,7 +58,7 @@
   <nav class="nav sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-xl">
     <div class="max-w-screen-2xl mx-auto px-8 flex items-center justify-between h-[76px]">
       <div class="flex items-center gap-x-3">
-        <div class="w-9 h-9 bg-white rounded-3xl flex items-center justify-center">
+        <div class="w-9 h-9 bg-[#00f5ff] rounded-3xl flex items-center justify-center">
           <span class="text-black font-bold text-[26px] tracking-tighter">E</span>
         </div>
         <div class="font-semibold text-2xl tracking-[-1.5px]">Epic Agent Fabric</div>
@@ -76,7 +76,7 @@
           Install
         </button>
         <button onclick="showAdminPanel()" 
-                class="px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-3xl hover:bg-white/90 transition-all">
+                class="px-6 py-2.5 bg-[#00f5ff] text-black text-sm font-semibold rounded-3xl hover:bg-[#67faff] transition-all">
           Dashboard
         </button>
       </div>
@@ -84,24 +84,24 @@
   </nav>
 
   <!-- HERO -->
-  <div class="max-w-screen-2xl mx-auto px-8 pt-20 pb-24">
+  <div class="max-w-screen-2xl mx-auto px-8 pt-24 pb-24">
     <div class="max-w-4xl">
-      <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/5 text-xs tracking-[3px] text-white/60 mb-8">
+      <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/5 text-xs tracking-[3.5px] text-white/60 mb-8">
         LOCAL • TOKEN-NATIVE • PRODUCTION
       </div>
       
-      <h1 class="text-8xl font-semibold tracking-[-6.5px] leading-none">
-        The agent<br>operating system<br>you actually own.
+      <h1 class="text-[92px] font-semibold tracking-[-7.2px] leading-[0.96]">
+        The agent<br>OS you<br>actually own.
       </h1>
       
-      <p class="mt-8 text-2xl text-white/60 max-w-lg">
+      <p class="mt-8 text-2xl text-white/60 max-w-md">
         Run powerful autonomous agents locally.<br>
         No subscriptions. No vendor lock-in.
       </p>
 
-      <div class="mt-12 flex items-center gap-x-4">
+      <div class="mt-14 flex items-center gap-x-4">
         <button onclick="showInstallModal()" 
-                class="btn px-9 py-4 bg-white text-black font-semibold rounded-3xl text-lg">
+                class="btn px-10 py-4 bg-white text-black font-semibold rounded-3xl text-lg">
           Install locally
         </button>
         <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank"
@@ -114,36 +114,36 @@
 
   <!-- PLATFORM -->
   <div id="platform" class="max-w-screen-2xl mx-auto px-8 py-20 border-t border-white/10">
-    <div class="max-w-2xl mb-12">
-      <div class="text-sm tracking-[3px] text-[#00f5ff] mb-3">THE PLATFORM</div>
-      <h2 class="section-header font-semibold">Five pillars.<br>One operating system.</h2>
+    <div class="max-w-2xl mb-14">
+      <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">THE PLATFORM</div>
+      <h2 class="section-header font-semibold tracking-tighter">Five pillars.<br>One operating system.</h2>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="text-[#00f5ff] text-sm mb-4">01</div>
-        <div class="font-semibold text-2xl">Media Fabric</div>
-        <div class="text-sm text-white/50 mt-6">Open Montage • OpenCut • Voicebox • FluidVoice • Penpot</div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
+        <div class="text-[#00f5ff] text-sm mb-5">01</div>
+        <div class="font-semibold text-2xl tracking-tight">Media Fabric</div>
+        <div class="text-sm text-white/50 mt-8">Open Montage • OpenCut • Voicebox • FluidVoice • Penpot</div>
       </div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="text-[#00f5ff] text-sm mb-4">02</div>
-        <div class="font-semibold text-2xl">Agent OS Layer</div>
-        <div class="text-sm text-white/50 mt-6">Codebase Memory • Zapier MCP • Agent Reach • Executor</div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
+        <div class="text-[#00f5ff] text-sm mb-5">02</div>
+        <div class="font-semibold text-2xl tracking-tight">Agent OS Layer</div>
+        <div class="text-sm text-white/50 mt-8">Codebase Memory • Zapier MCP • Agent Reach • Executor</div>
       </div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="text-[#00f5ff] text-sm mb-4">03</div>
-        <div class="font-semibold text-2xl">Intelligence Fabric</div>
-        <div class="text-sm text-white/50 mt-6">TimesFM • Daily Stock Analysis • World Monitor</div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
+        <div class="text-[#00f5ff] text-sm mb-5">03</div>
+        <div class="font-semibold text-2xl tracking-tight">Intelligence Fabric</div>
+        <div class="text-sm text-white/50 mt-8">TimesFM • Daily Stock Analysis • World Monitor</div>
       </div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="text-[#00f5ff] text-sm mb-4">04</div>
-        <div class="font-semibold text-2xl">TokenOS</div>
-        <div class="text-sm text-white/50 mt-6">Usage metering • Burn forecasting • Budget guardrails</div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
+        <div class="text-[#00f5ff] text-sm mb-5">04</div>
+        <div class="font-semibold text-2xl tracking-tight">TokenOS</div>
+        <div class="text-sm text-white/50 mt-8">Usage metering • Burn forecasting • Budget guardrails</div>
       </div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="text-[#00f5ff] text-sm mb-4">05</div>
-        <div class="font-semibold text-2xl">Prompt Layer</div>
-        <div class="text-sm text-white/50 mt-6">System prompt research • Guardrails • Templates</div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 group">
+        <div class="text-[#00f5ff] text-sm mb-5">05</div>
+        <div class="font-semibold text-2xl tracking-tight">Prompt Layer</div>
+        <div class="text-sm text-white/50 mt-8">System prompt research • Guardrails • Templates</div>
       </div>
     </div>
   </div>
@@ -152,40 +152,40 @@
   <div id="services" class="max-w-screen-2xl mx-auto px-8 py-20 border-t border-white/10">
     <div class="flex items-end justify-between mb-10">
       <div>
-        <div class="text-sm tracking-[3px] text-[#00f5ff] mb-3">CONTROL PANEL</div>
+        <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">CONTROL PANEL</div>
         <h3 class="text-5xl font-semibold tracking-tighter">Live services</h3>
       </div>
       <button onclick="checkAllServices()" 
-              class="px-6 py-3 border border-white/20 hover:bg-white/5 rounded-3xl text-sm transition-all flex items-center gap-x-2">
+              class="px-7 py-3.5 border border-white/20 hover:bg-white/5 rounded-3xl text-sm transition-all flex items-center gap-x-2">
         Check Status
       </button>
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div onclick="openService(8787, 'Executor Gateway', this)" class="service-card cursor-pointer bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl">
-        <div class="font-semibold text-xl">Executor Gateway</div>
-        <div class="flex items-center justify-between mt-14">
+        <div class="font-semibold text-xl tracking-tight">Executor Gateway</div>
+        <div class="flex items-center justify-between mt-16">
           <div class="text-sm text-white/40">localhost:8787</div>
           <div class="status-dot w-2.5 h-2.5 rounded-full bg-white/20"></div>
         </div>
       </div>
       <div onclick="openService(7777, 'TokenOS', this)" class="service-card cursor-pointer bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl">
-        <div class="font-semibold text-xl">TokenOS</div>
-        <div class="flex items-center justify-between mt-14">
+        <div class="font-semibold text-xl tracking-tight">TokenOS</div>
+        <div class="flex items-center justify-between mt-16">
           <div class="text-sm text-white/40">localhost:7777</div>
           <div class="status-dot w-2.5 h-2.5 rounded-full bg-white/20"></div>
         </div>
       </div>
       <div onclick="openService(9001, 'Penpot', this)" class="service-card cursor-pointer bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl">
-        <div class="font-semibold text-xl">Penpot</div>
-        <div class="flex items-center justify-between mt-14">
+        <div class="font-semibold text-xl tracking-tight">Penpot</div>
+        <div class="flex items-center justify-between mt-16">
           <div class="text-sm text-white/40">localhost:9001</div>
           <div class="status-dot w-2.5 h-2.5 rounded-full bg-white/20"></div>
         </div>
       </div>
       <div onclick="openService(5001, 'Voicebox', this)" class="service-card cursor-pointer bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl">
-        <div class="font-semibold text-xl">Voicebox</div>
-        <div class="flex items-center justify-between mt-14">
+        <div class="font-semibold text-xl tracking-tight">Voicebox</div>
+        <div class="flex items-center justify-between mt-16">
           <div class="text-sm text-white/40">localhost:5001</div>
           <div class="status-dot w-2.5 h-2.5 rounded-full bg-white/20"></div>
         </div>
@@ -277,7 +277,7 @@
       }
     });
 
-    console.log('%c[Epic Agent Fabric] Premium landing page loaded.', 'color:#444');
+    console.log('%c[Epic Agent Fabric] Bold premium landing page loaded.', 'color:#444');
   </script>
 </body>
 </html>
