@@ -1,8 +1,8 @@
-# Epic Agent Fabric - Lightweight Production Stack
-# This version is optimized for first-time users and faster downloads.
+# Epic Agent Fabric - Production Ready (Clean Version)
+# Only includes services that actually work out of the box.
 
 services:
-  # === CORE SERVICES ===
+  # Core Services
   redis:
     image: redis:7-alpine
     ports:
@@ -37,7 +37,7 @@ services:
       - redis
     restart: unless-stopped
 
-  # === AUTOMATION ===
+  # Automation
   n8n:
     image: n8nio/n8n:latest
     ports:
@@ -50,7 +50,7 @@ services:
       - n8n_data:/home/node/.n8n
     restart: unless-stopped
 
-  # === MEMORY ===
+  # Memory
   chroma:
     image: chromadb/chroma:latest
     ports:
