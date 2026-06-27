@@ -1,7 +1,8 @@
-# Epic Agent Fabric - Core Only (Production Ready)
+# Epic Agent Fabric - Full Production Stack
+# This version includes Core + Media/Voice + Automation + Memory
 
 services:
-  # Redis - Database
+  # === CORE ===
   redis:
     image: redis:7-alpine
     ports:
@@ -10,7 +11,6 @@ services:
       - redis_data:/data
     restart: unless-stopped
 
-  # Executor Gateway - Secure agent bridge
   executor-gateway:
     build:
       context: ./integrations/executor-gateway
@@ -23,7 +23,6 @@ services:
       - ZAPIER_API_KEY=${ZAPIER_API_KEY:-}
     restart: unless-stopped
 
-  # TokenOS - Usage & Economics
   tokenos:
     build:
       context: ./integrations/tokenos
@@ -38,5 +37,59 @@ services:
       - redis
     restart: unless-stopped
 
+  # === MEDIA & VOICE ===
+  whisper:
+    image: onerahmet/openai-whisper-asr-webservice:latest
+    ports:
+      - "9000:9000"
+    environment:
+      - ASR_MODEL=base
+    restart: unless-stopped
+
+  piper:
+    image: lscr.io/linuxserver/piper:latest
+    ports:
+      - "5003:5003"
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./volume/piper:/config
+    restart: unless-stopped
+
+  # === AUTOMATION ===
+  n8n:
+    image: n8nio/n8n:latest
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin
+    volumes:
+      - n8n_data:/home/node/.n8n
+    restart: unless-stopped
+
+  # === MEMORY ===
+  chroma:
+    image: chromadb/chroma:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    restart: unless-stopped
+
+  # === LOCAL LLM (for agents + coding) ===
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
 volumes:
   redis_data:
+  n8n_data:
+  chroma_data:
+  ollama_data:
