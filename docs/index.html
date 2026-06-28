@@ -12,7 +12,8 @@
     .service-card:hover { border-color: #00f5ff; transform: translateY(-8px); }
     .btn { transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1); }
     .btn:hover { transform: translateY(-3px); }
-    .section-header { font-size: 4.8rem; line-height: 0.94; letter-spacing: -0.08em; }
+    .section-header { font-size: 3.8rem; line-height: 0.96; letter-spacing: -0.07em; }
+    @media (min-width: 768px) { .section-header { font-size: 4.8rem; } }
     .status-dot { transition: all 0.3s ease; }
     .tool-pill { transition: all 0.2s ease; }
     .tool-pill:hover { background: #1a1a1a; color: #00f5ff; transform: translateY(-1px); }
@@ -22,7 +23,7 @@
     .glow-cyan { box-shadow: 0 0 100px -20px #00f5ff60; }
     .project-card { transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
     .project-card:hover { transform: translateY(-6px); border-color: #00f5ff; }
-    .category-header { font-size: 1.1rem; letter-spacing: 1px; color: #00f5ff; }
+    .category-header { font-size: 1.05rem; letter-spacing: 2px; color: #00f5ff; }
   </style>
 </head>
 <body>
@@ -35,9 +36,8 @@
         <div class="font-semibold text-2xl tracking-[-1.5px]">Epic Agent Fabric</div>
       </div>
       <div class="flex items-center gap-x-10 text-sm">
-        <a href="#platform" class="text-white/60 hover:text-white transition-colors">Platform</a>
-        <a href="#tools" class="text-white/60 hover:text-white transition-colors">Tools</a>
         <a href="#ecosystem" class="text-white/60 hover:text-white transition-colors">Ecosystem</a>
+        <a href="#platform" class="text-white/60 hover:text-white transition-colors">Platform</a>
         <a href="#services" class="text-white/60 hover:text-white transition-colors">Services</a>
         <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank" class="text-white/60 hover:text-white transition-colors">GitHub</a>
       </div>
@@ -49,58 +49,29 @@
   </nav>
 
   <!-- HERO -->
-  <div class="max-w-screen-2xl mx-auto px-8 pt-16 pb-20 hero-grid">
+  <div class="max-w-screen-2xl mx-auto px-8 pt-16 pb-16 hero-grid">
     <div class="max-w-5xl">
       <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/5 text-xs tracking-[4px] text-white/60 mb-8">💯 LOCAL • 🔥 TOKEN-NATIVE • 🚀 PRODUCTION</div>
-      <h1 class="text-[108px] font-semibold tracking-[-8.2px] leading-[0.9]">The agent<br>OS that<br>actually works.</h1>
-      <p class="mt-8 text-2xl text-white/60 max-w-lg">5 pillars. 12 tools. Zero vendor lock-in.<br><span class="text-[#00f5ff]">Built different.</span></p>
-      <div class="mt-12 flex items-center gap-x-4">
+      <h1 class="text-[96px] font-semibold tracking-[-7.5px] leading-[0.92]">The agent<br>OS that<br>actually works.</h1>
+      <p class="mt-6 text-2xl text-white/60 max-w-lg">5 pillars. 12 tools. Zero vendor lock-in.<br><span class="text-[#00f5ff]">Built different.</span></p>
+      <div class="mt-10 flex items-center gap-x-4">
         <button onclick="showInstallModal()" class="btn px-10 py-4 bg-[#00f5ff] text-black font-semibold rounded-3xl text-lg">Install locally</button>
         <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank" class="btn px-9 py-4 border border-white/20 hover:bg-white/5 rounded-3xl text-lg flex items-center gap-x-2">View source</a>
       </div>
     </div>
   </div>
 
-  <!-- PLATFORM -->
-  <div id="platform" class="max-w-screen-2xl mx-auto px-8 py-20 border-t border-white/10">
-    <div class="max-w-2xl mb-14">
-      <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">THE PLATFORM</div>
-      <h2 class="section-header font-semibold tracking-tighter">Five pillars.<br>One operating system.</h2>
-    </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">01</div><div class="font-semibold text-2xl tracking-tight">Media Fabric</div><div class="text-sm text-white/50 mt-8">Open Montage • OpenCut • Voicebox • FluidVoice • Penpot</div></div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">02</div><div class="font-semibold text-2xl tracking-tight">Agent OS Layer</div><div class="text-sm text-white/50 mt-8">Codebase Memory • Zapier MCP • Agent Reach • Executor</div></div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">03</div><div class="font-semibold text-2xl tracking-tight">Intelligence Fabric</div><div class="text-sm text-white/50 mt-8">TimesFM • Daily Stock Analysis • World Monitor</div></div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">04</div><div class="font-semibold text-2xl tracking-tight">TokenOS</div><div class="text-sm text-white/50 mt-8">Usage metering • Burn forecasting • Budget guardrails</div></div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">05</div><div class="font-semibold text-2xl tracking-tight">Prompt Layer</div><div class="text-sm text-white/50 mt-8">System prompt research • Guardrails • Templates</div></div>
-    </div>
-  </div>
-
-  <!-- THE FULL STACK -->
-  <div id="tools" class="max-w-screen-2xl mx-auto px-8 py-20 border-t border-white/10">
-    <div class="max-w-2xl mb-12">
-      <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">THE FULL STACK</div>
-      <h2 class="section-header font-semibold tracking-tighter">12 tools.<br>Fully integrated.</h2>
-    </div>
-    <div class="space-y-4">
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="flex items-center justify-between mb-6"><div><span class="text-[#00f5ff] text-sm">01</span> <span class="font-semibold text-xl">Media Fabric</span></div><div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">5 tools</div></div><div class="flex flex-wrap gap-2"><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(5001, 'Voicebox')">Voicebox ✓</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(5002, 'FluidVoice')">FluidVoice ✓</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Open Montage')">Open Montage</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('OpenCut')">OpenCut</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(9001, 'Penpot')">Penpot ✓</div></div></div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="flex items-center justify-between mb-6"><div><span class="text-[#00f5ff] text-sm">02</span> <span class="font-semibold text-xl">Agent OS Layer</span></div><div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">4 tools</div></div><div class="flex flex-wrap gap-2"><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(8787, 'Executor Gateway')">kortix-executor ✓</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Codebase Memory MCP')">Codebase Memory MCP</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Zapier MCP')">Zapier MCP</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Agent Reach')">Agent Reach</div></div></div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="flex items-center justify-between mb-6"><div><span class="text-[#00f5ff] text-sm">03</span> <span class="font-semibold text-xl">Intelligence Fabric</span></div><div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">3 tools</div></div><div class="flex flex-wrap gap-2"><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('TimesFM')">TimesFM</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Daily Stock Analysis')">Daily Stock Analysis</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('World Monitor')">World Monitor</div></div></div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="flex items-center justify-between mb-6"><div><span class="text-[#00f5ff] text-sm">04</span> <span class="font-semibold text-xl">TokenOS</span></div><div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">Core</div></div><div class="flex flex-wrap gap-2"><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Burn Forecasting ✓</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Budget Guardrails ✓</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Token-native Billing ✓</div></div></div>
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="flex items-center justify-between mb-6"><div><span class="text-[#00f5ff] text-sm">05</span> <span class="font-semibold text-xl">Prompt Layer</span></div><div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">Research</div></div><div class="flex flex-wrap gap-2"><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('System Prompt Leaks')">System Prompt Leaks</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Guardrails Library')">Guardrails Library</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Instruction Templates')">Instruction Templates</div></div></div>
-    </div>
-  </div>
-
-  <!-- THE ECOSYSTEM - ALL LIVE PROJECTS -->
+  <!-- ECOSYSTEM (MAIN FOCUS) -->
   <div id="ecosystem" class="max-w-screen-2xl mx-auto px-8 py-20 border-t border-white/10">
-    <div class="max-w-2xl mb-12">
+    <div class="max-w-3xl mb-12">
       <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">THE ECOSYSTEM</div>
-      <h2 class="section-header font-semibold tracking-tighter">Live in production.</h2>
+      <h2 class="section-header font-semibold tracking-tighter">Live in production.<br>Built in public.</h2>
+      <p class="mt-4 text-xl text-white/60">Every project. Every experiment. Every launch.<br>From Jan 2025 → Feb 2026.</p>
     </div>
 
     <!-- CORE HUBS & LOUNGES -->
-    <div class="mb-12">
-      <div class="category-header mb-4">CORE HUBS &amp; LOUNGES</div>
+    <div class="mb-14">
+      <div class="category-header mb-5">CORE HUBS &amp; LOUNGES</div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <a href="https://epic-tech-ai-platform.vercel.app" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Tech AI Platform</div></a>
         <a href="https://epic-tech-chat-v1.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Tech Chat v1</div></a>
@@ -115,8 +86,8 @@
     </div>
 
     <!-- AI AGENTS & TOOLS -->
-    <div class="mb-12">
-      <div class="category-header mb-4">AI AGENTS &amp; TOOLS</div>
+    <div class="mb-14">
+      <div class="category-header mb-5">AI AGENTS &amp; TOOLS</div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <a href="https://epic-ai-bot.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic AI Bot</div></a>
         <a href="https://the-chat-2.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">The Chat 2</div></a>
@@ -124,21 +95,20 @@
         <a href="https://epic-tech-ruddy.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Tech Ruddy</div></a>
         <a href="https://epic-magic.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Magic</div></a>
         <a href="https://outside-the-box-lilac.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Outside The Box</div></a>
-        <a href="https://epic-ai-bot.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic AI Bot</div></a>
       </div>
     </div>
 
     <!-- MUSIC & AUDIO VAULT -->
-    <div class="mb-12">
-      <div class="category-header mb-4">MUSIC &amp; AUDIO VAULT</div>
+    <div class="mb-14">
+      <div class="category-header mb-5">MUSIC &amp; AUDIO VAULT</div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <a href="https://music-vault-eta.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Music Vault</div></a>
       </div>
     </div>
 
     <!-- INTERACTIVE WEBGL / THREE.JS DEMOS -->
-    <div class="mb-12">
-      <div class="category-header mb-4">INTERACTIVE WEBGL / THREE.JS DEMOS</div>
+    <div class="mb-14">
+      <div class="category-header mb-5">INTERACTIVE WEBGL / THREE.JS DEMOS</div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <a href="https://matrix1-zeta.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Matrix1</div></a>
         <a href="https://sm0k367.github.io/neural-lounge/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Neural Lounge</div></a>
@@ -151,7 +121,7 @@
 
     <!-- SYSTEMS & TOOLS -->
     <div>
-      <div class="category-header mb-4">SYSTEMS &amp; TOOLS</div>
+      <div class="category-header mb-5">SYSTEMS &amp; TOOLS</div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <a href="https://gateway-alpha-dusky.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Gateway</div></a>
         <a href="https://intercom-bay.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Intercom</div></a>
@@ -165,16 +135,30 @@
     </div>
   </div>
 
+  <!-- PLATFORM (Secondary) -->
+  <div id="platform" class="max-w-screen-2xl mx-auto px-8 py-16 border-t border-white/10">
+    <div class="max-w-2xl mb-10">
+      <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">THE PLATFORM</div>
+      <h2 class="text-4xl font-semibold tracking-tighter">Five pillars.<br>One operating system.</h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">01</div><div class="font-semibold text-2xl tracking-tight">Media Fabric</div><div class="text-sm text-white/50 mt-8">Open Montage • OpenCut • Voicebox • FluidVoice • Penpot</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">02</div><div class="font-semibold text-2xl tracking-tight">Agent OS Layer</div><div class="text-sm text-white/50 mt-8">Codebase Memory • Zapier MCP • Agent Reach • Executor</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">03</div><div class="font-semibold text-2xl tracking-tight">Intelligence Fabric</div><div class="text-sm text-white/50 mt-8">TimesFM • Daily Stock Analysis • World Monitor</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">04</div><div class="font-semibold text-2xl tracking-tight">TokenOS</div><div class="text-sm text-white/50 mt-8">Usage metering • Burn forecasting • Budget guardrails</div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">05</div><div class="font-semibold text-2xl tracking-tight">Prompt Layer</div><div class="text-sm text-white/50 mt-8">System prompt research • Guardrails • Templates</div></div>
+    </div>
+  </div>
+
   <!-- SERVICES -->
   <div id="services" class="max-w-screen-2xl mx-auto px-8 py-20 border-t border-white/10">
     <div class="flex items-end justify-between mb-10">
       <div>
         <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">CONTROL PANEL</div>
-        <h3 class="text-5xl font-semibold tracking-tighter">Live services</h3>
+        <h3 class="text-4xl font-semibold tracking-tighter">Live services</h3>
       </div>
       <button onclick="checkAllServices()" class="px-7 py-3.5 border border-white/20 hover:bg-white/5 rounded-3xl text-sm transition-all flex items-center gap-x-2">Check Status</button>
     </div>
-
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div onclick="openService(8787, 'Executor Gateway', this)" class="service-card working cursor-pointer bg-[#0a0a0a] border border-[#22c55e] p-8 rounded-3xl">
         <div class="font-semibold text-xl tracking-tight">Executor Gateway</div>
@@ -301,7 +285,7 @@
       }
     });
 
-    console.log('%c[Epic Agent Fabric] Full ecosystem landing page loaded.', 'color:#444');
+    console.log('%c[Epic Agent Fabric] Ecosystem-first landing page loaded.', 'color:#444');
   </script>
 </body>
 </html>
