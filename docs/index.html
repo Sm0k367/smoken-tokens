@@ -6,99 +6,34 @@
   <title>Epic Agent Fabric</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
-    
-    body {
-      font-family: 'Inter', system_ui, sans-serif;
-      background: #050505;
-      color: #ededed;
-    }
-    
-    .font-display {
-      font-family: 'Space Grotesk', 'Inter', sans-serif;
-      font-weight: 600;
-      letter-spacing: -0.06em;
-    }
-
-    .nav {
-      border-bottom: 1px solid #111;
-    }
-
-    .service-card {
-      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .service-card:hover {
-      border-color: #00f5ff;
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
-    }
-
-    .btn {
-      transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .btn:hover {
-      transform: translateY(-3px);
-    }
-
-    .section-header {
-      font-size: 4.8rem;
-      line-height: 0.94;
-      letter-spacing: -0.08em;
-    }
-
-    .status-dot {
-      transition: all 0.3s ease;
-    }
-
-    .tool-pill {
-      transition: all 0.2s ease;
-    }
-    .tool-pill:hover {
-      background: #1a1a1a;
-      color: #00f5ff;
-      transform: translateY(-1px);
-    }
-
-    .working {
-      border-color: #22c55e;
-      box-shadow: 0 0 0 1px #22c55e20;
-    }
-    .working .status-dot {
-      background: #22c55e;
-    }
-
-    .hero-grid {
-      background-image: 
-        linear-gradient(#00f5ff06 1px, transparent 1px),
-        linear-gradient(90deg, #00f5ff06 1px, transparent 1px);
-      background-size: 70px 70px;
-    }
-
-    .glow-cyan {
-      box-shadow: 0 0 100px -20px #00f5ff60;
-    }
-
-    .project-card {
-      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: #00f5ff;
-    }
+    body { font-family: 'Inter', system_ui, sans-serif; background: #050505; color: #ededed; }
+    .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; letter-spacing: -0.06em; }
+    .service-card { transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
+    .service-card:hover { border-color: #00f5ff; transform: translateY(-8px); }
+    .btn { transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1); }
+    .btn:hover { transform: translateY(-3px); }
+    .section-header { font-size: 4.8rem; line-height: 0.94; letter-spacing: -0.08em; }
+    .status-dot { transition: all 0.3s ease; }
+    .tool-pill { transition: all 0.2s ease; }
+    .tool-pill:hover { background: #1a1a1a; color: #00f5ff; transform: translateY(-1px); }
+    .working { border-color: #22c55e; box-shadow: 0 0 0 1px #22c55e20; }
+    .working .status-dot { background: #22c55e; }
+    .hero-grid { background-image: linear-gradient(#00f5ff06 1px, transparent 1px), linear-gradient(90deg, #00f5ff06 1px, transparent 1px); background-size: 70px 70px; }
+    .glow-cyan { box-shadow: 0 0 100px -20px #00f5ff60; }
+    .project-card { transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
+    .project-card:hover { transform: translateY(-6px); border-color: #00f5ff; }
+    .category-header { font-size: 1.1rem; letter-spacing: 1px; color: #00f5ff; }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="nav sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-2xl">
+  <nav class="nav sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-2xl border-b border-white/10">
     <div class="max-w-screen-2xl mx-auto px-8 flex items-center justify-between h-[76px]">
       <div class="flex items-center gap-x-3">
-        <div class="w-10 h-10 bg-[#00f5ff] rounded-3xl flex items-center justify-center glow-cyan">
-          <span class="text-black font-bold text-[28px] tracking-tighter">E</span>
-        </div>
+        <div class="w-10 h-10 bg-[#00f5ff] rounded-3xl flex items-center justify-center glow-cyan"><span class="text-black font-bold text-[28px] tracking-tighter">E</span></div>
         <div class="font-semibold text-2xl tracking-[-1.5px]">Epic Agent Fabric</div>
       </div>
-
       <div class="flex items-center gap-x-10 text-sm">
         <a href="#platform" class="text-white/60 hover:text-white transition-colors">Platform</a>
         <a href="#tools" class="text-white/60 hover:text-white transition-colors">Tools</a>
@@ -106,7 +41,6 @@
         <a href="#services" class="text-white/60 hover:text-white transition-colors">Services</a>
         <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank" class="text-white/60 hover:text-white transition-colors">GitHub</a>
       </div>
-
       <div class="flex items-center gap-x-3">
         <button onclick="showInstallModal()" class="px-6 py-2.5 text-sm border border-white/20 hover:bg-white/5 rounded-3xl transition-all">Install</button>
         <button onclick="showAdminPanel()" class="px-7 py-2.5 bg-[#00f5ff] text-black text-sm font-semibold rounded-3xl hover:bg-[#67faff] transition-all">Dashboard</button>
@@ -117,37 +51,12 @@
   <!-- HERO -->
   <div class="max-w-screen-2xl mx-auto px-8 pt-16 pb-20 hero-grid">
     <div class="max-w-5xl">
-      <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/5 text-xs tracking-[4px] text-white/60 mb-8">
-        💯 LOCAL • 🔥 TOKEN-NATIVE • 🚀 PRODUCTION
-      </div>
-      
-      <h1 class="text-[108px] font-semibold tracking-[-8.2px] leading-[0.9]">
-        The agent<br>OS that<br>actually works.
-      </h1>
-      
-      <p class="mt-8 text-2xl text-white/60 max-w-lg">
-        5 pillars. 12 tools. Zero vendor lock-in.<br>
-        <span class="text-[#00f5ff]">Built different.</span>
-      </p>
-
+      <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/5 text-xs tracking-[4px] text-white/60 mb-8">💯 LOCAL • 🔥 TOKEN-NATIVE • 🚀 PRODUCTION</div>
+      <h1 class="text-[108px] font-semibold tracking-[-8.2px] leading-[0.9]">The agent<br>OS that<br>actually works.</h1>
+      <p class="mt-8 text-2xl text-white/60 max-w-lg">5 pillars. 12 tools. Zero vendor lock-in.<br><span class="text-[#00f5ff]">Built different.</span></p>
       <div class="mt-12 flex items-center gap-x-4">
         <button onclick="showInstallModal()" class="btn px-10 py-4 bg-[#00f5ff] text-black font-semibold rounded-3xl text-lg">Install locally</button>
         <a href="https://github.com/Sm0k367/smoken-tokens" target="_blank" class="btn px-9 py-4 border border-white/20 hover:bg-white/5 rounded-3xl text-lg flex items-center gap-x-2">View source</a>
-      </div>
-
-      <div class="mt-16 grid grid-cols-3 gap-8 max-w-lg">
-        <div>
-          <div class="text-4xl font-semibold tracking-tighter">5</div>
-          <div class="text-sm text-white/50">Pillars</div>
-        </div>
-        <div>
-          <div class="text-4xl font-semibold tracking-tighter">12</div>
-          <div class="text-sm text-white/50">Tools</div>
-        </div>
-        <div>
-          <div class="text-4xl font-semibold tracking-tighter">0</div>
-          <div class="text-sm text-white/50">Subscriptions</div>
-        </div>
       </div>
     </div>
   </div>
@@ -158,7 +67,6 @@
       <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">THE PLATFORM</div>
       <h2 class="section-header font-semibold tracking-tighter">Five pillars.<br>One operating system.</h2>
     </div>
-
     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">01</div><div class="font-semibold text-2xl tracking-tight">Media Fabric</div><div class="text-sm text-white/50 mt-8">Open Montage • OpenCut • Voicebox • FluidVoice • Penpot</div></div>
       <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="text-[#00f5ff] text-sm mb-5">02</div><div class="font-semibold text-2xl tracking-tight">Agent OS Layer</div><div class="text-sm text-white/50 mt-8">Codebase Memory • Zapier MCP • Agent Reach • Executor</div></div>
@@ -174,70 +82,12 @@
       <div class="text-sm tracking-[3.5px] text-[#00f5ff] mb-4">THE FULL STACK</div>
       <h2 class="section-header font-semibold tracking-tighter">12 tools.<br>Fully integrated.</h2>
     </div>
-
     <div class="space-y-4">
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="flex items-center justify-between mb-6">
-          <div><span class="text-[#00f5ff] text-sm">01</span> <span class="font-semibold text-xl">Media Fabric</span></div>
-          <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">5 tools</div>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(5001, 'Voicebox')">Voicebox ✓</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(5002, 'FluidVoice')">FluidVoice ✓</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Open Montage')">Open Montage</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('OpenCut')">OpenCut</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(9001, 'Penpot')">Penpot ✓</div>
-        </div>
-      </div>
-
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="flex items-center justify-between mb-6">
-          <div><span class="text-[#00f5ff] text-sm">02</span> <span class="font-semibold text-xl">Agent OS Layer</span></div>
-          <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">4 tools</div>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(8787, 'Executor Gateway')">kortix-executor ✓</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Codebase Memory MCP')">Codebase Memory MCP</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Zapier MCP')">Zapier MCP</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Agent Reach')">Agent Reach</div>
-        </div>
-      </div>
-
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="flex items-center justify-between mb-6">
-          <div><span class="text-[#00f5ff] text-sm">03</span> <span class="font-semibold text-xl">Intelligence Fabric</span></div>
-          <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">3 tools</div>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('TimesFM')">TimesFM</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Daily Stock Analysis')">Daily Stock Analysis</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('World Monitor')">World Monitor</div>
-        </div>
-      </div>
-
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="flex items-center justify-between mb-6">
-          <div><span class="text-[#00f5ff] text-sm">04</span> <span class="font-semibold text-xl">TokenOS</span></div>
-          <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">Core</div>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Burn Forecasting ✓</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Budget Guardrails ✓</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Token-native Billing ✓</div>
-        </div>
-      </div>
-
-      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-        <div class="flex items-center justify-between mb-6">
-          <div><span class="text-[#00f5ff] text-sm">05</span> <span class="font-semibold text-xl">Prompt Layer</span></div>
-          <div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">Research</div>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('System Prompt Leaks')">System Prompt Leaks</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Guardrails Library')">Guardrails Library</div>
-          <div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Instruction Templates')">Instruction Templates</div>
-        </div>
-      </div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="flex items-center justify-between mb-6"><div><span class="text-[#00f5ff] text-sm">01</span> <span class="font-semibold text-xl">Media Fabric</span></div><div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">5 tools</div></div><div class="flex flex-wrap gap-2"><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(5001, 'Voicebox')">Voicebox ✓</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(5002, 'FluidVoice')">FluidVoice ✓</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Open Montage')">Open Montage</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('OpenCut')">OpenCut</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(9001, 'Penpot')">Penpot ✓</div></div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="flex items-center justify-between mb-6"><div><span class="text-[#00f5ff] text-sm">02</span> <span class="font-semibold text-xl">Agent OS Layer</span></div><div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">4 tools</div></div><div class="flex flex-wrap gap-2"><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(8787, 'Executor Gateway')">kortix-executor ✓</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Codebase Memory MCP')">Codebase Memory MCP</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Zapier MCP')">Zapier MCP</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Agent Reach')">Agent Reach</div></div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="flex items-center justify-between mb-6"><div><span class="text-[#00f5ff] text-sm">03</span> <span class="font-semibold text-xl">Intelligence Fabric</span></div><div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">3 tools</div></div><div class="flex flex-wrap gap-2"><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('TimesFM')">TimesFM</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Daily Stock Analysis')">Daily Stock Analysis</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('World Monitor')">World Monitor</div></div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="flex items-center justify-between mb-6"><div><span class="text-[#00f5ff] text-sm">04</span> <span class="font-semibold text-xl">TokenOS</span></div><div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">Core</div></div><div class="flex flex-wrap gap-2"><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Burn Forecasting ✓</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Budget Guardrails ✓</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="openService(7777, 'TokenOS')">Token-native Billing ✓</div></div></div>
+      <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8"><div class="flex items-center justify-between mb-6"><div><span class="text-[#00f5ff] text-sm">05</span> <span class="font-semibold text-xl">Prompt Layer</span></div><div class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-2xl">Research</div></div><div class="flex flex-wrap gap-2"><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('System Prompt Leaks')">System Prompt Leaks</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Guardrails Library')">Guardrails Library</div><div class="tool-pill px-4 py-1.5 bg-[#111] rounded-2xl text-sm cursor-pointer" onclick="showComingSoon('Instruction Templates')">Instruction Templates</div></div></div>
     </div>
   </div>
 
@@ -249,124 +99,69 @@
     </div>
 
     <!-- CORE HUBS & LOUNGES -->
-    <div class="mb-10">
-      <div class="text-sm text-[#00f5ff] mb-4">CORE HUBS &amp; LOUNGES</div>
+    <div class="mb-12">
+      <div class="category-header mb-4">CORE HUBS &amp; LOUNGES</div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <a href="https://epic-tech-ai-lounge.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Epic Tech AI Lounge</div>
-        </a>
-        <a href="https://after-dark-five.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">After Dark</div>
-        </a>
-        <a href="https://epictech.ai/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Epic Tech AI</div>
-        </a>
-        <a href="https://epictech-website.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Epic Tech Website</div>
-        </a>
-        <a href="https://machine-built.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Machine Built</div>
-        </a>
+        <a href="https://epic-tech-ai-platform.vercel.app" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Tech AI Platform</div></a>
+        <a href="https://epic-tech-chat-v1.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Tech Chat v1</div></a>
+        <a href="https://epic-tech-ai-lounge.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Tech AI Lounge</div></a>
+        <a href="https://ai-lounge-after-dark-v3-xock.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">AI Lounge After Dark v3</div></a>
+        <a href="https://wtf-drab.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">WTF</div></a>
+        <a href="https://epictech-tau.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Tech</div></a>
+        <a href="https://machine-built.vercel.app" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Machine Built</div></a>
+        <a href="https://epic-tech-ai-web.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Tech AI Web</div></a>
+        <a href="https://ai-lounge-six.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">AI Lounge Six</div></a>
+      </div>
+    </div>
+
+    <!-- AI AGENTS & TOOLS -->
+    <div class="mb-12">
+      <div class="category-header mb-4">AI AGENTS &amp; TOOLS</div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="https://epic-ai-bot.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic AI Bot</div></a>
+        <a href="https://the-chat-2.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">The Chat 2</div></a>
+        <a href="https://epic-tech-aigent.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Tech Aigent</div></a>
+        <a href="https://epic-tech-ruddy.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Tech Ruddy</div></a>
+        <a href="https://epic-magic.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Magic</div></a>
+        <a href="https://outside-the-box-lilac.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Outside The Box</div></a>
+        <a href="https://epic-ai-bot.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic AI Bot</div></a>
       </div>
     </div>
 
     <!-- MUSIC & AUDIO VAULT -->
-    <div class="mb-10">
-      <div class="text-sm text-[#00f5ff] mb-4">MUSIC &amp; AUDIO VAULT</div>
+    <div class="mb-12">
+      <div class="category-header mb-4">MUSIC &amp; AUDIO VAULT</div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <a href="https://music-vault-eta.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Music Vault</div>
-        </a>
-        <a href="https://suno.com/@dj_smoke_stream" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Suno — @dj_smoke_stream</div>
-        </a>
-      </div>
-    </div>
-
-    <!-- AI AGENTS & TOOLS -->
-    <div class="mb-10">
-      <div class="text-sm text-[#00f5ff] mb-4">AI AGENTS &amp; TOOLS</div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <a href="https://epic-ai-bot.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Epic AI Bot</div>
-        </a>
-        <a href="https://pixio.myapps.ai/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Pixio</div>
-        </a>
-        <a href="https://machineclaw.myapps.ai/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Machine Claw</div>
-        </a>
+        <a href="https://music-vault-eta.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Music Vault</div></a>
       </div>
     </div>
 
     <!-- INTERACTIVE WEBGL / THREE.JS DEMOS -->
-    <div class="mb-10">
-      <div class="text-sm text-[#00f5ff] mb-4">INTERACTIVE WEBGL / THREE.JS DEMOS</div>
+    <div class="mb-12">
+      <div class="category-header mb-4">INTERACTIVE WEBGL / THREE.JS DEMOS</div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <a href="https://sm0k367.github.io/neural-lounge/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Neural Lounge</div>
-        </a>
-        <a href="https://sm0k367.github.io/lyric-visualizer-v2.0/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Lyric Visualizer v2</div>
-        </a>
-        <a href="https://sm0k367.github.io/vault/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Vault</div>
-        </a>
-        <a href="https://sm0k367.github.io/vault1/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Vault 1</div>
-        </a>
-        <a href="https://sm0k367.github.io/game/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Game</div>
-        </a>
-        <a href="https://sm0k367.github.io/high-stakes/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">High Stakes</div>
-        </a>
-        <a href="https://sm0k367.github.io/vids/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Vids</div>
-        </a>
-        <a href="https://sm0k367.github.io/crablist/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Crablist</div>
-        </a>
-        <a href="https://sm0k367.github.io/nexus/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Nexus</div>
-        </a>
-        <a href="https://sm0k367.github.io/gardenchat/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Garden Chat</div>
-        </a>
-        <a href="https://sm0k367.github.io/epicmachine/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Epic Machine</div>
-        </a>
-        <a href="https://sm0k367.github.io/referal/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Referal</div>
-        </a>
-        <a href="https://sm0k367.github.io/smoke-stream/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Smoke Stream</div>
-        </a>
+        <a href="https://matrix1-zeta.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Matrix1</div></a>
+        <a href="https://sm0k367.github.io/neural-lounge/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Neural Lounge</div></a>
+        <a href="https://sm0k367.github.io/vault/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Vault</div></a>
+        <a href="https://sm0k367.github.io/vault1/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Vault 1</div></a>
+        <a href="https://sm0k367.github.io/game/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Game</div></a>
+        <a href="https://sm0k367.github.io/high-stakes/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">High Stakes</div></a>
       </div>
     </div>
 
-    <!-- AI AGENTS & TOOLS -->
-    <div class="mb-10">
-      <div class="text-sm text-[#00f5ff] mb-4">AI AGENTS &amp; TOOLS</div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <a href="https://epic-ai-bot.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Epic AI Bot</div>
-        </a>
-        <a href="https://pixio.myapps.ai/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Pixio</div>
-        </a>
-        <a href="https://machineclaw.myapps.ai/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-          <div class="font-semibold">Machine Claw</div>
-        </a>
-      </div>
-    </div>
-
-    <!-- FULL ARCHIVE -->
+    <!-- SYSTEMS & TOOLS -->
     <div>
-      <div class="text-sm text-[#00f5ff] mb-4">FULL ARCHIVE &amp; REPOS</div>
-      <a href="https://github.com/Sm0k367" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl">
-        <div class="font-semibold">100+ Repositories → https://github.com/Sm0k367</div>
-      </a>
+      <div class="category-header mb-4">SYSTEMS &amp; TOOLS</div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="https://gateway-alpha-dusky.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Gateway</div></a>
+        <a href="https://intercom-bay.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Intercom</div></a>
+        <a href="https://gate-nine-cyan.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Gate</div></a>
+        <a href="https://gate-keeper-rouge.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Gate Keeper</div></a>
+        <a href="https://epic-tech-ai-digital-backpack-v2.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Epic Tech AI Digital Backpack v2</div></a>
+        <a href="https://pixal-talev1.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Pixal Tale v1</div></a>
+        <a href="https://homeowner1-beryl.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Homeowner1</div></a>
+        <a href="https://aigent-zrxo.vercel.app/" target="_blank" class="project-card block bg-[#0a0a0a] border border-white/10 hover:border-[#00f5ff] p-6 rounded-3xl"><div class="font-semibold">Aigent</div></a>
+      </div>
     </div>
   </div>
 
